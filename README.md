@@ -1,2 +1,0 @@
-# HuffmanProject
-Huffman Project 
