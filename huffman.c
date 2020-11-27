@@ -1,3 +1,5 @@
+#include "huffman.h"
+
 void translate_texte_with_huffman(){
 
     FILE* texte = fopen("texte.txt", "r");
