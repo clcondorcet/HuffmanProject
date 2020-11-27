@@ -28,7 +28,11 @@ Tree create_huffman_tree(List * occurrencesList){
 
 void printDico(Node * tree, FILE * file, char * chars){
     if(tree->haveChara){
-        fprintf(file, "%c", tree->chara);
+        if(tree->chara == '\n'){
+            fprintf(file, "%c%c", '\\', 'n');
+        }else{
+            fprintf(file, "%c", tree->chara);
+        }
         int i = 0;
         while(chars[i] != '\0'){
             fprintf(file, "%c", chars[i]);
