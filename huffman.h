@@ -45,4 +45,11 @@ int createDico(Tree huffmanTree);
 void translate_texte_with_huffman();
 
 
+/**
+ * @brief Compresses a file with the huffma tree
+ * The function uses all the function used before to compress a file with the huffman tree
+ * @param none
+ * @return none
+ */
+void compress_file_with_huffman();
 #endif /* HUFFMAN_H */
