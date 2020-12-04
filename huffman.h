@@ -6,6 +6,13 @@
 #include <stdlib.h>
 
 /**
+ * @brief Create a list of occurences
+ * 
+ * @param none
+ * @return the list of occurences 
+ */
+Element_occur* list_occurence()
+/**
  * @brief Create a huffman tree object.
  * 
  * @param occurrencesList 
