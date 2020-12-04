@@ -46,10 +46,19 @@ void translate_texte_with_huffman();
 
 
 /**
- * @brief Compresses a file with the huffma tree
+ * @brief Compresses a file with the huffman tree
  * The function uses all the function used before to compress a file with the huffman tree
  * @param none
  * @return none
  */
 void compress_file_with_huffman();
+
+/**
+ * @brief Decompresses a file with the huffman tree
+ * The function uses the huffman tree and the compressed file to decompress the text
+ * @param Tree/Node*
+ * @return none
+ */
+void decompress_text_with_huffman(Node*);
+
 #endif /* HUFFMAN_H */
