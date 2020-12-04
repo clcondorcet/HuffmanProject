@@ -219,3 +219,15 @@ void translate_texte_with_huffman(int size_max){
     fclose(texte);
     fclose(encode_texte);
 }
+void compress_file_with_huffman(){
+    int question=0;
+    printf("Do you want to compress your file texte.txt ? (Enter 1 if yes, 0 if no)");
+    scanf("%d",&question);
+    if (question==1){
+        Element_occur* El = list_occurence();
+        Tree huffmantree = create_huffman_tree(&El);
+        createDico(huffmantree);
+        translate_texte_with_huffman(treeDeapth(huffmantree));
+    }
+    printf("Bye");
+}
