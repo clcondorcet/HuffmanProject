@@ -5,6 +5,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+
+/**
+ * @brief transform a letter into it's binary code
+ * 
+ * @param letter
+ * @return binary code
+ */
+int* letter_to_binary(int letter);
+
+/**
+ * @brief function to print a char into a file
+ * 
+ * @param p_file, binary
+ * @return none 
+ */
+void print_in_file(char* p_file, int* binary);
+
+/**
+ * @brief Function to translate a text file to its binary text
+ * 
+ * @param input_file and output_file
+ * @return none
+ */
+void translation_file_to_binary(char* input_file, char* output_file);
+
+/**
+ * @brief Function to calculate the number of characters in a texte file
+ * 
+ * @param txt_name
+ * @return the number of characters in the text 
+ */
+int nb_character_txt_file(char* txt_name);
+
 /**
  * @brief Create a list of occurences
  * 
@@ -59,6 +93,6 @@ void compress_file_with_huffman();
  * @param Tree/Node*
  * @return none
  */
-void decompress_text_with_huffman(Node*);
+void decompress_text_with_huffman(Tree huffmantree);
 
 #endif /* HUFFMAN_H */
