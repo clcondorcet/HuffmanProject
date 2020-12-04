@@ -219,6 +219,42 @@ void translate_texte_with_huffman(int size_max){
     fclose(texte);
     fclose(encode_texte);
 }
+
+
+void decompress_text_with_huffman(Tree huffmantree){
+    FILE* encoded_texte = fopen("compressed.txt", "r");
+    FILE* texte = fopen("decompressed.txt", "w+");
+    if(encoded_texte == NULL){
+        printf("Error in opening file\n");
+        fclose(encoded_texte);
+        fclose(texte);
+    }
+    if(texte == NULL){
+        printf("Error in opening file\n");
+        fclose(encoded_texte);
+        fclose(texte);
+    }
+    else{
+        int number = 0;
+        while(number!= EOF){
+            Node* temp = huffmantree;
+            while(temp->haveChara!=1 && number!=EOF){
+                number=fgetc(encoded_texte);
+                if(number == 49){
+                    temp = temp->right;
+                }
+                if(number == 48){
+                    temp = temp->left;
+                }
+            }
+            fprintf(texte,"%c",temp->chara);
+            temp = huffmantree;
+        }
+    }
+    fclose(encoded_texte);
+    fclose(texte);
+}
+
 void compress_file_with_huffman(){
     int question=0;
     printf("Do you want to compress your file texte.txt ? (Enter 1 if yes, 0 if no)");
@@ -228,6 +264,14 @@ void compress_file_with_huffman(){
         Tree huffmantree = create_huffman_tree(&El);
         createDico(huffmantree);
         translate_texte_with_huffman(treeDeapth(huffmantree));
+        question=0;
+        printf("Your compress has suceeded\nDo you want to decompress it too ? (Enter 1 if yes, 0 if no)");
+        scanf("%d",&question);
+        if (question==1){
+            decompress_text_with_huffman(huffmantree);
+        }
     }
     printf("Bye");
 }
+
+
