@@ -1,10 +1,127 @@
 #include "huffman.h"
 
+int* letter_to_binary(int letter)
+{
+    int* binary = (int*) malloc(8*sizeof(int));
+    binary[0] = 0;
+    for (int i = 7; i >= 1; i--)
+    {
+        binary[i] = letter%2;
+        letter = letter/2;
+    }
+    return binary;
+}
+
+void print_in_file(char* p_file, int* binary)
+{
+    FILE* bin;
+    bin = fopen(p_file, "w+");
+    if (bin == NULL)
+    {
+        printf("Error in opening file.\n");
+    }
+    else
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            fprintf(bin, "%d", binary[i]);
+        }
+    }
+    fclose(bin);
+}
+
+void translation_file_to_binary(char* input_file, char* output_file)
+{
+    FILE *bin, *file;
+    file = fopen(input_file, "r+");
+    bin = fopen(output_file, "w+");
+    char letters;
+    if (file == NULL)
+    {
+        printf("Error in opening file\n");
+    }
+    else
+    {
+        while (!feof(file))
+        {
+            letters = fgetc(file);
+            int letter_in_ascii = (int)letters;
+            if (letter_in_ascii != -1)
+            {
+                int* binary = letter_to_binary(letter_in_ascii);
+                print_in_file(output_file, binary);
+            }
+        }
+
+    }
+    fclose(bin);
+    fclose(file);
+}
+
+
+
+int nb_character_txt_file(char* txt_name)
+{
+    int count = 0;
+    char letter;
+    FILE *file;
+    file = fopen(txt_name, "r");
+    if (file == NULL)
+    {
+        printf("Error in opening file\n");
+        return 0;
+    }
+    while(!feof(file))
+    {
+        letter = fgetc(file);
+        count++;
+    }
+    fclose(file);
+    return count-1; //Does not include spaces and returns.
+}
+Element_occur* list_occurence(){
+
+    List head = NULL;
+    List current = NULL;
+    List new_node = NULL;
+
+
+    FILE* ptr = fopen("texte.txt", "r");
+
+    if (ptr == NULL){
+        printf("error");
+        return 0;
+    }
+
+    int ch;
+    int char_found;
+
+    while ( (ch = fgetc(ptr)) != EOF )
+    {
+        current = head;
+        char_found = 0;
+        while ((current != NULL) && (!char_found)){
+            if (current->chara == ch){
+                current->occurrences++;
+                char_found = 1;
+            }
+            current = current->next;
+        }
+        if (!char_found){
+            new_node = create_element(ch,1);
+            new_node->next = head;
+            head = new_node;
+        }
+    }
+    fclose(ptr);
+    return head;
+}
+
 Tree create_huffman_tree(List * occurrencesList){
     if(occurrencesList != NULL){
-        Element * leftE = popMin(occurrencesList);
+        Element_occur * leftE = popMin(occurrencesList);
         Node * left = create_node(leftE->chara, 1, leftE->occurrences, NULL, NULL);
-        Element * rightE = popMin(occurrencesList);
+        Element_occur * rightE = popMin(occurrencesList);
         Node * right = NULL;
         int occurrences = leftE->occurrences;
         free(leftE);
@@ -71,18 +188,18 @@ int createDico(Tree huffmanTree){
     return 1;
 }
 
-void translate_texte_with_huffman(){
+
+void translate_texte_with_huffman(int size_max){
 
     FILE* texte = fopen("texte.txt", "r");
     FILE* code = fopen("dico.txt", "r");
     FILE* encode_texte = fopen("compressed.txt", "w+");
-
     char letter = fgetc(texte);
     while (letter != EOF){
 
-        char* take_info = (char*)malloc(12*sizeof(char));
+        char* take_info = (char*)malloc((size_max+3)*sizeof(char));
         do{
-            fgets(take_info, 12, code);
+            fgets(take_info, size_max+3, code);
         }while(letter != take_info[0] && !(letter == '\n' && take_info[1] == 'n'));
         rewind(code);
 
