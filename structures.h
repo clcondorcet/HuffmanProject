@@ -2,7 +2,7 @@
 #define STRUCTURES_H
 
 /**
- * @brief Struture of the nodes of the occurences list.
+ * @brief Struture of the nodes of the occurrences list.
  * 
  */
 typedef struct Element{
@@ -12,7 +12,7 @@ typedef struct Element{
 }Element;
 
 /**
- * @brief Struture of the occurences list.
+ * @brief Struture of the occurrences list.
  * 
  */
 typedef Element* List;
@@ -34,6 +34,15 @@ typedef struct Node{
  * 
  */
 typedef Node* Tree;
+
+typedef struct QueueElement{
+    Node * data;
+    struct QueueElement * next;
+}QueueElement;
+
+typedef struct Queue{
+    QueueElement * values_of_queue;
+}Queue;
 
 /**
  * @brief Create a element object.
@@ -71,5 +80,59 @@ Node * create_node(char chara, int haveChara, int occurrences, Node * left, Node
  * @return int 
  */
 int treeDeapth(Node * node);
+
+/**
+ * @brief Create a QueueElement object
+ * 
+ * @param data 
+ * @return QueueElement* 
+ */
+QueueElement * create_QueueElement(Node * data);
+
+/**
+ * @brief Create a queue object
+ * 
+ * @return Queue* 
+ */
+Queue * create_queue();
+
+/**
+ * @brief Return wether or not a queue is empty.
+ * 
+ * @param queue 
+ * @return 1 empty, 0 not empty.
+ */
+int is_empty(Queue * queue);
+
+/**
+ * @brief Add a Node* at the end of a Queue (a QueueElement is automatically created).
+ * 
+ * @param queue 
+ * @param data 
+ */
+void enqueue(Queue * queue, Node * data);
+
+/**
+ * @brief Remove and return the first Node* of a Queue (it free the QueueElement automatically).
+ * 
+ * @param queue 
+ * @return Node* or NULL
+ */
+Node * dequeue(Queue * queue);
+
+/**
+ * @brief Return the first Node* of a Queue but doesn't remove it.
+ * 
+ * @param queue 
+ * @return Node* 
+ */
+Node * front(Queue * queue);
+
+/**
+ * @brief Free the Queue (it free QueueElement but not the Node* inside).
+ * 
+ * @param queue 
+ */
+void free_queue(Queue * queue);
 
 #endif /* STRUCTURES_H */

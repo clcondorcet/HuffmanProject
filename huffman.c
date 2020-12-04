@@ -102,3 +102,71 @@ void translate_texte_with_huffman(){
     fclose(texte);
     fclose(encode_texte);
 }
+
+void selection_sort(Node ** array, int size){
+    int min, i, y;
+    for(i = 0; i < size-1; i++){
+        min = i;
+        for(y = i + 1; y < size; y++){
+            if(array[y]->occurrences < array[min]->occurrences){
+                min = y;
+            }
+        }
+        if(min != i){
+            Node * temp = array[min];
+            array[min] = array[i];
+            array[i] = temp;
+        }
+    }
+}
+
+void printList(Node ** array, int size){
+    for(int i = 0; i < size; i++){
+        if(array[i]->haveChara){
+            printf("%c%d ", array[i]->chara ,array[i]->occurrences);
+        }else{
+            printf("%d ", array[i]->occurrences);
+        }
+    }
+}
+
+Node * getMin(Queue * sourceQueue, Queue * newNodeQueue){
+    Node * toAdd = front(sourceQueue);
+    if(toAdd == NULL){
+        return dequeue(newNodeQueue);
+    }else{
+        Node * other = front(newNodeQueue);
+        if(other != NULL && other->occurrences < toAdd->occurrences){
+            return dequeue(newNodeQueue);
+        }
+    }
+    return dequeue(sourceQueue);
+}
+
+Tree create_huffman_tree_Optimised(Node ** arrayNodes, int size){
+    selection_sort(arrayNodes, size);
+    Queue * sourceQueue = create_queue();
+    Queue * newNodeQueue = create_queue();
+    int i;
+    for(i = 0; i < size; i++){
+        enqueue(sourceQueue, arrayNodes[i]);
+    }
+    while(!is_empty(sourceQueue) || !is_empty(newNodeQueue)){
+        Node * left = getMin(sourceQueue, newNodeQueue);
+        Node * right = getMin(sourceQueue, newNodeQueue);
+        int sum = left->occurrences;
+        if(right != NULL){
+            sum += right->occurrences;
+        }else{
+            free(sourceQueue);
+            free(newNodeQueue);
+            return left;
+        }
+        Node * newNode = create_node(' ', 0, sum, left, right);
+        enqueue(newNodeQueue, newNode);
+    }
+    printf("If you see this, the dev is not good.");
+    free(sourceQueue);
+    free(newNodeQueue);
+    return NULL; // Should not be call.
+}
