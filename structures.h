@@ -24,7 +24,7 @@ typedef Element* List;
 typedef struct Node{
     char chara;
     int occurrences;
-    int haveChara;
+    int haveChara; // 1 = occurrence with character, 0 = just occurrence.
     struct Node* left;
     struct Node* right;
 }Node;

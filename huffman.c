@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_DEPRECATE
 #include "huffman.h"
 
 Tree create_huffman_tree(List * occurrencesList){
@@ -145,8 +146,8 @@ Node * getMin(Queue * sourceQueue, Queue * newNodeQueue){
 
 Tree create_huffman_tree_Optimised(Node ** arrayNodes, int size){
     selection_sort(arrayNodes, size);
-    Queue * sourceQueue = create_queue();
-    Queue * newNodeQueue = create_queue();
+    Queue * sourceQueue = create_queue(); // <- arrayOfNodes
+    Queue * newNodeQueue = create_queue(); // <- array of new nodes (without characters)
     int i;
     for(i = 0; i < size; i++){
         enqueue(sourceQueue, arrayNodes[i]);
