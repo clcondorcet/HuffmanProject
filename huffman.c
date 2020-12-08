@@ -273,5 +273,79 @@ void compress_file_with_huffman(){
     }
     printf("Bye");
 }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+typedef struct Element_newType{
+    int boolean;
+    struct Element_newType* next;
+}Element_newType;
 
+typedef struct Node_newType{
+    char data;
+    Element_newType* l;
+    struct Node_newType* right;
+    struct Node_newType* left;
+}Node_newType;
 
+typedef struct Node{ // La structure de Clément
+    char chara;
+    int occurrences;
+    int haveChara;
+    struct Node* left;
+    struct Node* right;
+}Node;
+
+Node_newType* create_Node_newType(char letter, Element_newType* list, Node_newType* theRight, Node_newType* theLeft){
+    Node_newType* newNode = (Node_newType*)malloc(sizeof(Node_newType));
+    newNode->data = letter;
+    newNode->l = list;
+    newNode->right = theRight;
+    newNode->left = theLeft;
+    return newNode;
+}
+
+Element_newType* create_Element_newType(int nbr, Element_newType* list){
+    Element_newType* newElement = (Element_newType*)malloc(sizeof(Element_newType));
+    newElement->boolean = nbr;
+    newElement->next = list;
+    return newElement;
+}
+
+void list_reverse(Element_newType** l){
+    Element_newType* temp = NULL;
+    Element_newType* remaind = NULL;
+    while((*l)!= NULL){
+        temp = (*l);
+        (*l)=(*l)->next;
+        temp->next=remaind;
+        remaind = temp;
+    }
+    (*l)=remaind;
+}
+
+void add_to_Element_newType(int nbr, Element_newType** l){
+    Element_newType* newElement = create_Element_newType(nbr, *l);
+    (*l)= newElement;
+}
+
+void search_code_to_createAVL(Node* tree, Element_newType* list1, Element_newType* list2, Node_newType** avl){
+    if(tree->haveChara == 0){
+        add_to_Element_newType(1, &list1);
+        add_to_Element_newType(0, &list2);
+        search_code_to_createAVL(tree->right, list1, list1, avl);
+        search_code_to_createAVL(tree->left, list2, list2, avl);
+    }else{
+        list_reverse(&list1);
+        Node_newType* node_for_AVL = create_Node_newType(tree->chara, list1, NULL, NULL);
+        // FONCTION DE RYAN On ajoute dans l'avl et on balance l'arbre
+    }
+}
+
+Node_newType* create_the_new_dico(Node* tree){
+    Node_newType* avl = NULL;
+    Element_newType* list1 = NULL;
+    Element_newType* list2 = NULL;
+    if(tree != NULL){
+        search_code_to_createAVL(tree, list1, list2, &avl);
+    }
+    return avl;
+}
