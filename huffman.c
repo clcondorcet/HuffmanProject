@@ -188,6 +188,48 @@ int createDico(Tree huffmanTree){
     return 1;
 }
 
+struct Element_occur* count_occur (char path[])
+{
+    struct Element_occur *head = NULL;
+    struct Element_occur *current = NULL;
+    struct Element_occur *new_node = NULL;
+
+    FILE *ptr = fopen(path, "r");
+
+    if (ptr == NULL){
+        printf("error while opening file \n");
+        return head;
+    }
+
+    int ch;
+    bool char_found;
+
+    while ( (ch = fgetc(ptr)) != EOF )
+    {
+        current = head;
+        char_found = false;
+        while ((current != NULL) && (!char_found))
+        {
+            if (current->chara == ch)
+            {
+                current->occurrences++;
+                char_found = true;
+            }
+            current = current->next;
+        }
+        if (!char_found)
+        {
+            new_node = (struct List*)malloc(sizeof(struct Element_occur));
+            new_node->chara = ch;
+            new_node->occurrences = 1;
+            new_node->next= head;
+            head = new_node;
+        }
+    }
+
+    fclose(ptr);
+    return head;
+}
 
 void translate_texte_with_huffman(int size_max){
 
