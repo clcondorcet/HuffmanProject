@@ -35,20 +35,36 @@ typedef struct Node{
  */
 typedef Node* Tree;
 
+/**
+ * @brief Structure for a Queue Element with a Node* in data
+ * 
+ */
 typedef struct QueueElement{
     Node * data;
     struct QueueElement * next;
 }QueueElement;
 
+/**
+ * @brief Structure for a Queue (Node* data)
+ * 
+ */
 typedef struct Queue{
     QueueElement * values_of_queue;
 }Queue;
 
+/**
+ * @brief Structure for a Queue Element with a char** in data
+ * 
+ */
 typedef struct QueueCharElement{
     char ** data;
     struct QueueCharElement * next;
 }QueueCharElement;
 
+/**
+ * @brief Structure for a Queue (Char** data)
+ * 
+ */
 typedef struct QueueChar{
     QueueCharElement * values_of_queue;
 }QueueChar;
@@ -144,18 +160,58 @@ Node * front(Queue * queue);
  */
 void free_queue(Queue * queue);
 
+/**
+ * @brief Create a QueueCharElement object
+ * 
+ * @param data 
+ * @return QueueCharElement* 
+ */
 QueueCharElement * create_QueueCharElement(char ** data);
 
+/**
+ * @brief Create a queueChar object
+ * 
+ * @return QueueChar* 
+ */
 QueueChar * create_queueChar();
 
+/**
+ * @brief Return wether or not a queue is empty.
+ * 
+ * @param queue 
+ * @return 1 empty, 0 not empty.
+ */
 int is_emptyChar(QueueChar * queue);
 
+/**
+ * @brief Add a char** at the end of a Queue (a QueueCharElement is automatically created).
+ * 
+ * @param queue 
+ * @param data 
+ */
 void enqueueChar(QueueChar * queue, char ** data);
 
+/**
+ * @brief Remove and return the first char** of a Queue (it free the QueueCharElement automatically).
+ * 
+ * @param queue 
+ * @return Node* or NULL
+ */
 char ** dequeueChar(QueueChar * queue);
 
+/**
+ * @brief Return the first char** of a Queue but doesn't remove it.
+ * 
+ * @param queue 
+ * @return Node* 
+ */
 char ** frontChar(QueueChar * queue);
 
+/**
+ * @brief Free the Queue (it free QueueElement but not the char** inside).
+ * 
+ * @param queue 
+ */
 void free_queueChar(QueueChar * queue);
 
 #endif /* STRUCTURES_H */
