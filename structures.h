@@ -2,7 +2,7 @@
 #define STRUCTURES_H
 
 /**
- * @brief Struture of the nodes of the occurences list.
+ * @brief Struture of the nodes of the occurrences list.
  * 
  */
 typedef struct Element_occur{
@@ -12,7 +12,7 @@ typedef struct Element_occur{
 }Element_occur;
 
 /**
- * @brief Struture of the occurences list.
+ * @brief Struture of the occurrences list.
  * 
  */
 typedef Element_occur* List;
@@ -24,7 +24,7 @@ typedef Element_occur* List;
 typedef struct Node{
     char chara;
     int occurrences;
-    int haveChara;
+    int haveChara; // 1 = occurrence with character, 0 = just occurrence.
     struct Node* left;
     struct Node* right;
 }Node;
@@ -34,6 +34,40 @@ typedef struct Node{
  * 
  */
 typedef Node* Tree;
+
+/**
+ * @brief Structure for a Queue Element with a Node* in data
+ * 
+ */
+typedef struct QueueElement{
+    Node * data;
+    struct QueueElement * next;
+}QueueElement;
+
+/**
+ * @brief Structure for a Queue (Node* data)
+ * 
+ */
+typedef struct Queue{
+    QueueElement * values_of_queue;
+}Queue;
+
+/**
+ * @brief Structure for a Queue Element with a char** in data
+ * 
+ */
+typedef struct QueueCharElement{
+    char ** data;
+    struct QueueCharElement * next;
+}QueueCharElement;
+
+/**
+ * @brief Structure for a Queue (Char** data)
+ * 
+ */
+typedef struct QueueChar{
+    QueueCharElement * values_of_queue;
+}QueueChar;
 
 /**
  * @brief Create a element object.
@@ -71,5 +105,113 @@ Node * create_node(char chara, int haveChara, int occurrences, Node * left, Node
  * @return int 
  */
 int treeDeapth(Node * node);
+
+/**
+ * @brief Create a QueueElement object
+ * 
+ * @param data 
+ * @return QueueElement* 
+ */
+QueueElement * create_QueueElement(Node * data);
+
+/**
+ * @brief Create a queue object
+ * 
+ * @return Queue* 
+ */
+Queue * create_queue();
+
+/**
+ * @brief Return wether or not a queue is empty.
+ * 
+ * @param queue 
+ * @return 1 empty, 0 not empty.
+ */
+int is_empty(Queue * queue);
+
+/**
+ * @brief Add a Node* at the end of a Queue (a QueueElement is automatically created).
+ * 
+ * @param queue 
+ * @param data 
+ */
+void enqueue(Queue * queue, Node * data);
+
+/**
+ * @brief Remove and return the first Node* of a Queue (it free the QueueElement automatically).
+ * 
+ * @param queue 
+ * @return Node* or NULL
+ */
+Node * dequeue(Queue * queue);
+
+/**
+ * @brief Return the first Node* of a Queue but doesn't remove it.
+ * 
+ * @param queue 
+ * @return Node* 
+ */
+Node * front(Queue * queue);
+
+/**
+ * @brief Free the Queue (it free QueueElement but not the Node* inside).
+ * 
+ * @param queue 
+ */
+void free_queue(Queue * queue);
+
+/**
+ * @brief Create a QueueCharElement object
+ * 
+ * @param data 
+ * @return QueueCharElement* 
+ */
+QueueCharElement * create_QueueCharElement(char ** data);
+
+/**
+ * @brief Create a queueChar object
+ * 
+ * @return QueueChar* 
+ */
+QueueChar * create_queueChar();
+
+/**
+ * @brief Return wether or not a queue is empty.
+ * 
+ * @param queue 
+ * @return 1 empty, 0 not empty.
+ */
+int is_emptyChar(QueueChar * queue);
+
+/**
+ * @brief Add a char** at the end of a Queue (a QueueCharElement is automatically created).
+ * 
+ * @param queue 
+ * @param data 
+ */
+void enqueueChar(QueueChar * queue, char ** data);
+
+/**
+ * @brief Remove and return the first char** of a Queue (it free the QueueCharElement automatically).
+ * 
+ * @param queue 
+ * @return Node* or NULL
+ */
+char ** dequeueChar(QueueChar * queue);
+
+/**
+ * @brief Return the first char** of a Queue but doesn't remove it.
+ * 
+ * @param queue 
+ * @return Node* 
+ */
+char ** frontChar(QueueChar * queue);
+
+/**
+ * @brief Free the Queue (it free QueueElement but not the char** inside).
+ * 
+ * @param queue 
+ */
+void free_queueChar(QueueChar * queue);
 
 #endif /* STRUCTURES_H */
