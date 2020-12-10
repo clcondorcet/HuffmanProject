@@ -23,22 +23,6 @@ Tree create_huffman_tree(List * occurrencesList);
 void printDico(Node * tree, FILE * file, char * chars);
 
 /**
- * @brief Print a huffman tree in dico.txt.
- * 
- * @param huffmanTree 
- * @return 0 if error, 1 if all is good
- */
-int createDico(Tree huffmanTree);
-
-/**
- * @brief Print a huffman tree optimised in dico.txt.
- * 
- * @param huffmanTree 
- * @return 0 if error, 1 if all is good
- */
-int createDicoOptimised(Tree huffmanTree);
-
-/**
  * @brief Function that translates a text into a binary sequence based on a Huffman dictionary
  * 
  */
