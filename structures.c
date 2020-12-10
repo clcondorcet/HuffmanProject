@@ -112,3 +112,66 @@ void free_queue(Queue * queue){
     }
     free(queue);
 }
+
+QueueCharElement * create_QueueCharElement(char ** data){
+    QueueCharElement * newEle = (QueueCharElement*) malloc(sizeof(QueueCharElement));
+    newEle->data = data;
+    newEle->next = NULL;
+    return newEle;
+}
+
+QueueChar * create_queueChar(){
+    QueueChar * newQueue = (QueueChar *) malloc(sizeof(QueueChar));
+    newQueue->values_of_queue = NULL;
+    return newQueue;
+}
+
+int is_emptyChar(QueueChar * queue){
+    if(queue->values_of_queue == NULL){
+        return 1;
+    }
+    return 0;
+}
+
+void enqueueChar(QueueChar * queue, char ** data){
+    if(data != NULL){
+        QueueCharElement * newEle = create_QueueCharElement(data);
+        QueueCharElement ** temp = &(queue->values_of_queue);
+        while((*temp) != NULL){
+            temp = &((*temp)->next);
+        }
+        *temp = newEle;
+    }
+}
+
+char ** dequeueChar(QueueChar * queue){
+    char ** data;
+    QueueCharElement * temp;
+    if(is_emptyChar(queue) == 1){
+        return NULL;
+    }
+    temp = queue->values_of_queue;
+    queue->values_of_queue = temp->next;
+    data = temp->data;
+    free(temp);
+    return data;
+}
+
+char ** frontChar(QueueChar * queue){
+    QueueCharElement * temp;
+    if(is_emptyChar(queue) == 1){
+        return NULL;
+    }
+    return queue->values_of_queue->data;
+}
+
+void free_queueChar(QueueChar * queue){
+    QueueCharElement * node = queue->values_of_queue;
+    QueueCharElement * temp;
+    while(node != NULL){
+        temp = node->next;
+        free(node);
+        node = temp;
+    }
+    free(queue);
+}

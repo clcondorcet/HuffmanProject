@@ -44,6 +44,15 @@ typedef struct Queue{
     QueueElement * values_of_queue;
 }Queue;
 
+typedef struct QueueCharElement{
+    char ** data;
+    struct QueueCharElement * next;
+}QueueCharElement;
+
+typedef struct QueueChar{
+    QueueCharElement * values_of_queue;
+}QueueChar;
+
 /**
  * @brief Create a element object.
  * 
@@ -134,5 +143,19 @@ Node * front(Queue * queue);
  * @param queue 
  */
 void free_queue(Queue * queue);
+
+QueueCharElement * create_QueueCharElement(char ** data);
+
+QueueChar * create_queueChar();
+
+int is_emptyChar(QueueChar * queue);
+
+void enqueueChar(QueueChar * queue, char ** data);
+
+char ** dequeueChar(QueueChar * queue);
+
+char ** frontChar(QueueChar * queue);
+
+void free_queueChar(QueueChar * queue);
 
 #endif /* STRUCTURES_H */
