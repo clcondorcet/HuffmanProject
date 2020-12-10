@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "huffman.h"
 #include "structures.h"
+#include "input_output.h"
 
 
 int main(){

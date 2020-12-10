@@ -2,6 +2,7 @@
 #define INPUT_OUTPUT_H_INCLUDED
 
 #include "structures.h"
+#include "huffman.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -20,7 +21,7 @@ int* letter_to_binary(int letter);
  * @param p_file, binary
  * @return none
  */
-void print_in_file(char* p_file, int* binary);
+void print_in_file(FILE * bin, int* binary);
 
 /**
  * @brief Function to translate a text file to its binary text

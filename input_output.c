@@ -12,10 +12,7 @@ int* letter_to_binary(int letter)
     return binary;
 }
 
-void print_in_file(char* p_file, int* binary)
-{
-    FILE* bin;
-    bin = fopen(p_file, "w+");
+void print_in_file(FILE * bin, int* binary){
     if (bin == NULL)
     {
         printf("Error in opening file.\n");
@@ -27,7 +24,6 @@ void print_in_file(char* p_file, int* binary)
             fprintf(bin, "%d", binary[i]);
         }
     }
-    fclose(bin);
 }
 
 void translation_file_to_binary(char* input_file, char* output_file)
@@ -49,7 +45,7 @@ void translation_file_to_binary(char* input_file, char* output_file)
             if (letter_in_ascii != -1)
             {
                 int* binary = letter_to_binary(letter_in_ascii);
-                print_in_file(output_file, binary);
+                print_in_file(bin, binary);
             }
         }
 
