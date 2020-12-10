@@ -187,37 +187,38 @@ int createDicoOptimised(Tree huffmanTree){
     return 1;
 }
 
+// The function compresses a text file using a dico file.
+// The function has as parameter size_max which represents the highest Huffman code size of a character.
+// The function return nothing. It just creates a text file with the compressed text.
 void translate_texte_with_huffman(int size_max){
 
-    FILE* texte = fopen("texte.txt", "r");
-    FILE* code = fopen("dico.txt", "r");
-    FILE* encode_texte = fopen("compressed.txt", "w+");
-    char letter = fgetc(texte);
-    while (letter != EOF){
-
-        char* take_info = (char*)malloc((size_max+3)*sizeof(char));
+    FILE* texte = fopen("texte.txt", "r"); // We open the file texte.txt
+    FILE* code = fopen("dico.txt", "r"); // We open the file dico.txt
+    FILE* encode_texte = fopen("compressed.txt", "w+"); // We create the file compressed.txt
+    char letter = fgetc(texte); // We take the first character of the texte
+    while (letter != EOF){ // While xe are not at the end of the texte
+        char* take_info = (char*)malloc((size_max+3)*sizeof(char)); // We create an array to contain the character and its Huffman code that we are looking for
         do{
-            fgets(take_info, size_max+3, code);
-        }while(letter != take_info[0] && !(letter == '\n' && take_info[1] == 'n'));
-        rewind(code);
-
+            fgets(take_info, size_max+3, code); // We take a line of the code.txt to find the Huffman code of the character that we want
+        }while(letter != take_info[0] && !(letter == '\n' && take_info[1] == 'n')); // the first character of the array contains the character of the Huffman code so we
+        rewind(code);                                                               // check that the character of the array is what we are looking for. A security has been
+                                                                                    // set for the particular case of the \n, two characters are used for the line break.
         int i = 1;
-        if(letter == '\n'){
+        if(letter == '\n'){ // If the character is a line break
             i = 2;
         }
         while(take_info[i] == '0' || take_info[i] == '1'){
-            fprintf(encode_texte, "%c", take_info[i]);
+            fprintf(encode_texte, "%c", take_info[i]); // We write the code as long as there are 0's and 1's in the array
             i++;
         }
-        free(take_info);
-        letter = fgetc(texte);
+        free(take_info); // We free the array
+        letter = fgetc(texte); // We take the following letter
     }
-
+    // We close the file
     fclose(code);
     fclose(texte);
     fclose(encode_texte);
 }
-
 
 void decompress_text_with_huffman(Tree huffmantree){
     FILE* encoded_texte = fopen("compressed.txt", "r");
