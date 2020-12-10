@@ -6,27 +6,12 @@
 #include <stdlib.h>
 
 /**
- * @brief Create a huffman tree object.
- * 
- * @param occurrencesList 
- * @return Tree 
+ * @brief Create a list of occurences
+ *
+ * @param none
+ * @return the list of occurences
  */
-Tree create_huffman_tree(List * occurrencesList);
-
-/**
- * @brief A recursive function used by createDico to print the huffman tree in a file.
- * 
- * @param tree 
- * @param file 
- * @param chars 
- */
-void printDico(Node * tree, FILE * file, char * chars);
-
-/**
- * @brief Function that translates a text into a binary sequence based on a Huffman dictionary
- * 
- */
-void translate_texte_with_huffman();
+Element_occur* list_occurence();
 
 /**
  * @brief Sort an array of nodes based on occurrences with selection sort algorithm.
@@ -43,6 +28,14 @@ void selection_sort(Node ** array, int size);
  * @param size 
  */
 void printList(Node ** array, int size);
+
+/**
+ * @brief Create a huffman tree object.
+ *
+ * @param occurrencesList
+ * @return Tree
+ */
+Tree create_huffman_tree(List * occurrencesList);
 
 /**
  * @brief Function used in create_huffman_tree_Optimised(), to get the minimum node from two queues with sourceQueue in priority.

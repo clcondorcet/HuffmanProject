@@ -5,17 +5,17 @@
  * @brief Struture of the nodes of the occurrences list.
  * 
  */
-typedef struct Element{
+typedef struct Element_occur{
     char chara;
     int occurrences;
-    struct Element * next;
-}Element;
+    struct Element_occur* next;
+}Element_occur;
 
 /**
  * @brief Struture of the occurrences list.
  * 
  */
-typedef Element* List;
+typedef Element_occur* List;
 
 /**
  * @brief Struture of the nodes of the Huffman tree.
@@ -74,17 +74,17 @@ typedef struct QueueChar{
  * 
  * @param chara 
  * @param occurrences 
- * @return Element* 
+ * @return Element_occur* 
  */
-Element * create_element(char chara, int occurrences);
+Element_occur * create_element(char chara, int occurrences);
 
 /**
  * @brief remove the minimum element of the list and return it.
  * 
  * @param list 
- * @return Element* 
+ * @return Element_occur* 
  */
-Element * popMin(List * list);
+Element_occur * popMin(List * list);
 
 /**
  * @brief Create a node object.
