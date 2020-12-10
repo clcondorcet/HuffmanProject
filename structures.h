@@ -2,7 +2,7 @@
 #define STRUCTURES_H
 
 /**
- * @brief Struture of the nodes of the occurences list.
+ * @brief Structure of the nodes of the occurrences list.
  * 
  */
 typedef struct Element_occur{
@@ -12,13 +12,13 @@ typedef struct Element_occur{
 }Element_occur;
 
 /**
- * @brief Struture of the occurences list.
+ * @brief Structure of the occurrences list.
  * 
  */
 typedef Element_occur* List;
 
 /**
- * @brief Struture of the nodes of the Huffman tree.
+ * @brief Structure of the nodes of the Huffman tree.
  * 
  */
 typedef struct Node{
