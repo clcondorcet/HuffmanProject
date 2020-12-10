@@ -6,7 +6,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 /**
  * @brief transform a letter into it's binary code
  *
@@ -52,9 +51,26 @@ void printDico(Node * tree, FILE * file, char * chars);
  * @brief Print a huffman tree in dico.txt.
  *
  * @param huffmanTree
- * @return 0 if error, 1 if all is good
+ * @return 0 if error, 1 if all is good.
  */
 int createDico(Tree huffmanTree);
+
+/**
+ * @brief Copy an array of characters into a new malloc one.
+ * 
+ * @param array
+ * @param size
+ * @return char**
+ */
+char ** copyArray(char ** array, int size);
+
+/**
+ * @brief Print a huffman tree optimised in dico.txt.
+ * 
+ * @param huffmanTree 
+ * @return 0 if error, 1 if all is good.
+ */
+int createDicoOptimised(Tree huffmanTree);
 
 /**
  * @brief Function that translates a text into a binary sequence based on a Huffman dictionary
