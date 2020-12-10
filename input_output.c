@@ -132,6 +132,18 @@ char ** copyArray(char ** array, int size){
 }
 
 int createDicoOptimised(Tree huffmanTree){
+    FILE * file = fopen("dico.txt", "w+");
+    if(file == NULL){
+        printf("Error in opening file\n");
+        fclose(file);
+        return 0;
+    }
+    int deapth = treeDeapth(huffmanTree);
+    char * chars = (char*) malloc(deapth * sizeof(char));
+    int i;
+    for(i = 0; i < deapth; i++){
+        chars[i] = '\0';
+    }
     Queue * nodeQueue = create_queue();
     QueueChar * charQueue = create_queueChar();
     enqueue(nodeQueue, huffmanTree);
