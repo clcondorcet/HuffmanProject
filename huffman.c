@@ -181,3 +181,19 @@ void balance(Node_newType** tree){
         }
     }
 }
+
+void add_on_AVL(Node_newType** avl, Node_newType* node_for_AVL){
+    if(*avl == NULL){
+        *avl = node_for_AVL;
+    }else{
+        int a = (int)(node_for_AVL->data);
+        int b = (int)((*avl)->data);
+        if(a < b){
+            avl = &((*avl)->left);
+            add_on_AVL(avl, node_for_AVL);
+        }else{
+            avl = &((*avl)->right);
+            add_on_AVL(avl, node_for_AVL);
+        }
+    }
+}
