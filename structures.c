@@ -191,3 +191,20 @@ Element_newType* create_Element_newType(int nbr, Element_newType* list){
     newElement->next = list;
     return newElement;
 }
+
+int tree_depth_Node_newType(Node_newType* tree){
+    if (tree == NULL){
+        return 0;
+    }
+    else{
+        int dl = tree_depth_Node_newType(tree->left);
+        int dr = tree_depth_Node_newType(tree->right);
+
+        if (dl > dr){
+            return dl + 1;
+        }
+        else{
+            return dr + 1;
+        }
+    }
+}
