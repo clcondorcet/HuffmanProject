@@ -66,6 +66,58 @@ Tree create_huffman_tree(List * occurrencesList){
     }
 }
 
+
+
+
+Node** add_two_array(Node** array, int size_array, int position_letter, char letter){
+    size_array ++;
+    Node** new_array = (Node**) malloc((size_array+1)*sizeof(Node*));
+    Node* newNode = create_node(letter, 1, 1, NULL, NULL);
+    int i = 0;
+    for(i=0;i<position_letter;i++){
+        new_array[i]=array[i];
+    }
+    new_array[position_letter]= newNode;
+    for(i=position_letter;i<size_array;i++){
+        new_array[i+1] = array[i];
+    }
+    free(array);
+    return new_array;
+}
+
+Node** array_of_occurences(){
+    FILE* texte = fopen("texte.txt", "r");
+    char letter = fgetc(texte);
+    int size_array = 0, start=0, middle=0,end =0;
+    Node** array= (Node**)malloc((1)*sizeof(Node*));
+    while (letter != EOF){
+        start=0;
+        end = size_array-1;
+        while (start <= end){
+                middle = (start+end)/2;
+                if (array[middle]->chara < letter){
+                    start= middle+1;
+                }
+
+                else{
+                    end = middle-1;
+                }
+        }
+
+        if (size_array>0 && start<size_array &&  array[start]->chara == letter)
+            array[start]->occurrences++;
+        else{
+            if(size_array==0 || end==-1 ||  array[end]->chara <= letter){
+                array = add_two_array(array,size_array,start,letter);
+                size_array++;
+            }
+        }
+        letter = fgetc(texte);
+    }
+    fclose(texte);
+    return array;
+}
+
 void selection_sort(Node ** array, int size){
     int min, i, y;
     for(i = 0; i < size-1; i++){
@@ -79,16 +131,6 @@ void selection_sort(Node ** array, int size){
             Node * temp = array[min];
             array[min] = array[i];
             array[i] = temp;
-        }
-    }
-}
-
-void printList(Node ** array, int size){
-    for(int i = 0; i < size; i++){
-        if(array[i]->haveChara){
-            printf("%c%d ", array[i]->chara ,array[i]->occurrences);
-        }else{
-            printf("%d ", array[i]->occurrences);
         }
     }
 }
