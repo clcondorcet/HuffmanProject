@@ -134,3 +134,41 @@ Tree create_huffman_tree_Optimised(Node ** arrayNodes, int size){
     return NULL; // Should not be call.
 }
 
+void add_on_AVL(Node_newType** avl, Node_newType* node_for_AVL){
+    if(*avl == NULL){
+        *avl = node_for_AVL;
+    }else{
+        int a = (int)(node_for_AVL->data);
+        int b = (int)((*avl)->data);
+        if(a < b){
+            avl = &((*avl)->left);
+            add_on_AVL(avl, node_for_AVL);
+        }else{
+            avl = &((*avl)->right);
+            add_on_AVL(avl, node_for_AVL);
+        }
+    }
+}
+
+void search_code_to_createAVL(Node* tree, Element_newType* list1, Element_newType* list2, Node_newType** avl){
+    if(tree->haveChara == 0){
+        list1 = create_Element_newType(1, list1);
+        list2 = create_Element_newType(0, list2);
+        search_code_to_createAVL(tree->right, list1, list1, avl);
+        search_code_to_createAVL(tree->left, list2, list2, avl);
+    }else{
+        Node_newType* node_for_AVL = create_Node_newType(tree->chara, list1, NULL, NULL);
+        add_on_AVL(avl, node_for_AVL);
+        balance(avl);
+    }
+}
+
+Node_newType* create_the_new_dico(Node* tree){
+    Node_newType* avl = NULL;
+    Element_newType* list1 = NULL;
+    Element_newType* list2 = NULL;
+    if(tree != NULL){
+        search_code_to_createAVL(tree, list1, list2, &avl);
+    }
+    return avl;
+}
