@@ -273,13 +273,6 @@ void compress_file_with_huffman(){
     printf("Bye");
 }
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * @brief calculate the balance factor.
- * 
- * @param Node_newType* 
- * @return int
- */
 int balance_factor(Node_newType* tree){
     if(tree == NULL){
         return 0;
@@ -289,12 +282,6 @@ int balance_factor(Node_newType* tree){
     }
 }
 
-/**
- * @brief right rotation to balance the tree.
- * 
- * @param Node_newType** 
- * @return Element_occur* 
- */
 void right_rotation(Node_newType** tree){
     if(*tree != NULL){
         Node_newType* temp = (*tree)->left;
@@ -304,11 +291,6 @@ void right_rotation(Node_newType** tree){
     }
 }
 
-/**
- * @brief left rotation to balance the tree.
- * 
- * @param Node_newType** 
- */
 void left_rotation(Node_newType** tree){
     if(*tree != NULL){
         Node_newType* temp = (*tree)->right;
@@ -318,11 +300,6 @@ void left_rotation(Node_newType** tree){
     }
 }
 
-/**
- * @brief balance a tree;
- * 
- * @param Node_newType** 
- */
 void balance(Node_newType** tree){
     if (*tree != NULL){
         balance(&((*tree)->left));
