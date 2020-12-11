@@ -175,3 +175,36 @@ void free_queueChar(QueueChar * queue){
     }
     free(queue);
 }
+
+Node_newType* create_Node_newType(char letter, Element_newType* list, Node_newType* theRight, Node_newType* theLeft){
+    Node_newType* newNode = (Node_newType*)malloc(sizeof(Node_newType));
+    newNode->data = letter;
+    newNode->l = list;
+    newNode->right = theRight;
+    newNode->left = theLeft;
+    return newNode;
+}
+
+Element_newType* create_Element_newType(int nbr, Element_newType* list){
+    Element_newType* newElement = (Element_newType*)malloc(sizeof(Element_newType));
+    newElement->boolean = nbr;
+    newElement->next = list;
+    return newElement;
+}
+
+int tree_depth_Node_newType(Node_newType* tree){
+    if (tree == NULL){
+        return 0;
+    }
+    else{
+        int dl = tree_depth_Node_newType(tree->left);
+        int dr = tree_depth_Node_newType(tree->right);
+
+        if (dl > dr){
+            return dl + 1;
+        }
+        else{
+            return dr + 1;
+        }
+    }
+}
