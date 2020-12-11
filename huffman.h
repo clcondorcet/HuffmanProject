@@ -21,13 +21,6 @@ Element_occur* list_occurence();
  */
 void selection_sort(Node ** array, int size);
 
-/**
- * @brief Debug function to print an array of nodes.
- * 
- * @param array 
- * @param size 
- */
-void printList(Node ** array, int size);
 
 /**
  * @brief Create a huffman tree object.
@@ -45,6 +38,25 @@ Tree create_huffman_tree(List * occurrencesList);
  * @return Node* or NULL
  */
 Node * getMin(Queue * sourceQueue, Queue * newNodeQueue);
+
+/**
+ * @brief create a dynamic array with the new node placed.
+ * 
+ * @param array, size_array, position_letter, letter 
+ * @param size_array
+ * @param position_letter
+ * @param letter 
+ * @return Node**
+ */
+Node** add_two_array(Node** array, int size_array, int position_letter, char letter);
+
+/**
+ * @brief build an array of node containing letters
+ *  Use the search by dichotomous
+ * @param none 
+ * @return Node** 
+ */
+Node** array_of_occurences();
 
 /**
  * @brief Create a optimised Huffman Tree.
