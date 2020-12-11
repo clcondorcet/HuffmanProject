@@ -2,6 +2,7 @@
 #define HUFFMAN_H
 
 #include "structures.h"
+#include "input_output.h"
 #include <stdio.h>
 #include <stdlib.h>
 

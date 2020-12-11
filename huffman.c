@@ -261,13 +261,14 @@ void search_code_to_createAVL(Node* tree, char ** array, int size, Node_newType*
 
 Node_newType* create_the_new_dico(Node* tree, int deapth){
     Node_newType* avl = NULL;
-    char * chars = (char*) malloc(deapth * sizeof(char));
+    char ** chars = (char**) malloc(sizeof(char *));
     int i;
+    *chars = (char*) malloc(deapth * sizeof(char));
     for(i = 0; i < deapth; i++){
-        chars[i] = '\0';
+        (*chars)[i] = '\0';
     }
     if(tree != NULL){
-        search_code_to_createAVL(tree, &chars, deapth, &avl);
+        search_code_to_createAVL(tree, chars, deapth, &avl);
     }
     return avl;
 }
