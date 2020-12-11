@@ -226,9 +226,6 @@ typedef struct Node_newType{
 }Node_newType;
 
 /**
- */
-
-/**
  * @brief Create a Node_newType object.
  * 
  * @param char 
