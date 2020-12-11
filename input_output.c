@@ -272,5 +272,3 @@ void compress_file_with_huffman(){
     }
     printf("Bye");
 }
-
-
