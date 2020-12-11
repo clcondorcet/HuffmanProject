@@ -96,4 +96,30 @@ void compress_file_with_huffman();
  */
 void decompress_text_with_huffman(Tree huffmantree);
 
+/**
+ * @brief Adding a new leaf to an AVL tree.
+ * 
+ * @param Node_newType**
+ * @param Node_newType*
+ */
+void add_on_AVL(Node_newType** avl, Node_newType* node_for_AVL);
+
+/**
+ * @brief creation of the avl which contains the dico.
+ * 
+ * @param Node*
+ * @param Element_newType*
+ * @param Element_newType*
+ * @param Node_newType**
+ */
+void search_code_to_createAVL(Node* tree, Element_newType* list1, Element_newType* list2, Node_newType** avl);
+
+/**
+ * @brief create the huffman dictionary.
+ * 
+ * @param Node* 
+ * @return Node_newType*
+ */
+Node_newType* create_the_new_dico(Node* tree);
+
 #endif // INPUT_OUTPUT_H_INCLUDED
