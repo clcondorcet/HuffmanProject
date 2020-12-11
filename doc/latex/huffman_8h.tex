@@ -1,0 +1,315 @@
+\hypertarget{huffman_8h}{}\doxysection{huffman.\+h File Reference}
+\label{huffman_8h}\index{huffman.h@{huffman.h}}
+
+
+All function related to building the huffman\+Tree, the dictionnary and the list of occurrences.  
+
+
+{\ttfamily \#include \char`\"{}structures.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_element__occur}{Element\+\_\+occur}} $\ast$ \mbox{\hyperlink{huffman_8h_a1cefbce2ccc06186cb21b2e2d8474155}{list\+\_\+occurence}} ()
+\begin{DoxyCompactList}\small\item\em Create a list of occurences. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{huffman_8h_a172f8a4c8a166edab9c56658687bc8ca}{selection\+\_\+sort}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$$\ast$array, int size)
+\begin{DoxyCompactList}\small\item\em Sort an array of nodes based on occurrences with selection sort algorithm. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structures_8h_a2b5312470152fabd805e7df398bb410f}{Tree}} \mbox{\hyperlink{huffman_8h_aa94d0cac09d2a2ecd7ada8ad2deb32c8}{create\+\_\+huffman\+\_\+tree}} (\mbox{\hyperlink{structures_8h_afc9de32003622570428917fe8ee59b10}{List}} $\ast$occurrences\+List)
+\begin{DoxyCompactList}\small\item\em Create a huffman tree object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_node}{Node}} $\ast$ \mbox{\hyperlink{huffman_8h_a159c6957de365fdd5609643369f8598c}{get\+Min}} (\mbox{\hyperlink{struct_queue}{Queue}} $\ast$source\+Queue, \mbox{\hyperlink{struct_queue}{Queue}} $\ast$new\+Node\+Queue)
+\begin{DoxyCompactList}\small\item\em Function used in \mbox{\hyperlink{huffman_8h_ad4d017c1b688d5f53e8526a8033cd2f3}{create\+\_\+huffman\+\_\+tree\+\_\+\+Optimised()}}, to get the minimum node from two queues with source\+Queue in priority. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_node}{Node}} $\ast$$\ast$ \mbox{\hyperlink{huffman_8h_a954fc2d2d4b261dc7f48d3de23ca13ee}{add\+\_\+two\+\_\+array}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$$\ast$array, int size\+\_\+array, int position\+\_\+letter, char letter)
+\begin{DoxyCompactList}\small\item\em create a dynamic array with the new node placed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_node}{Node}} $\ast$$\ast$ \mbox{\hyperlink{huffman_8h_a93f5ec21069def5d43b9e93ea40636f1}{array\+\_\+of\+\_\+occurences}} ()
+\begin{DoxyCompactList}\small\item\em build an array of node containing letters Use the search by dichotomous \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structures_8h_a2b5312470152fabd805e7df398bb410f}{Tree}} \mbox{\hyperlink{huffman_8h_ad4d017c1b688d5f53e8526a8033cd2f3}{create\+\_\+huffman\+\_\+tree\+\_\+\+Optimised}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$$\ast$array\+Nodes, int size)
+\begin{DoxyCompactList}\small\item\em Create a optimised Huffman Tree. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{huffman_8h_a727f1cb9005fe6ebec3fb6ce46582f14}{balance\+\_\+factor}} (\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$tree)
+\begin{DoxyCompactList}\small\item\em calculate the balance factor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{huffman_8h_a80a0116fc0dc05e5e0a3a0729648dff6}{right\+\_\+rotation}} (\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$$\ast$tree)
+\begin{DoxyCompactList}\small\item\em right rotation to balance the tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{huffman_8h_ae7985723e6280866227f7b74f75e3455}{left\+\_\+rotation}} (\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$$\ast$tree)
+\begin{DoxyCompactList}\small\item\em left rotation to balance the tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{huffman_8h_ac724dbe93b5574b8aef002b0f23d904f}{balance}} (\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$$\ast$tree)
+\begin{DoxyCompactList}\small\item\em balance a tree; \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{huffman_8h_ac44dd63582d22afe54830e6518323409}{add\+\_\+on\+\_\+\+A\+VL}} (\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$$\ast$avl, \mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$node\+\_\+for\+\_\+\+A\+VL)
+\begin{DoxyCompactList}\small\item\em Adding a new leaf to an A\+VL tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{huffman_8h_a1597532f320daa4fcb6e147a0ba1a1e5}{search\+\_\+code\+\_\+to\+\_\+create\+A\+VL}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$tree, \mbox{\hyperlink{struct_element__new_type}{Element\+\_\+new\+Type}} $\ast$list1, \mbox{\hyperlink{struct_element__new_type}{Element\+\_\+new\+Type}} $\ast$list2, \mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$$\ast$avl)
+\begin{DoxyCompactList}\small\item\em creation of the avl which contains the dico. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$ \mbox{\hyperlink{huffman_8h_a921790f302c832458efdc59b8c283875}{create\+\_\+the\+\_\+new\+\_\+dico}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$tree)
+\begin{DoxyCompactList}\small\item\em create the huffman dictionary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+All function related to building the huffman\+Tree, the dictionnary and the list of occurrences. 
+
+\begin{DoxyAuthor}{Author}
+Grp5 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2020-\/12-\/11 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{huffman_8h_ac44dd63582d22afe54830e6518323409}\label{huffman_8h_ac44dd63582d22afe54830e6518323409}} 
+\index{huffman.h@{huffman.h}!add\_on\_AVL@{add\_on\_AVL}}
+\index{add\_on\_AVL@{add\_on\_AVL}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{add\_on\_AVL()}{add\_on\_AVL()}}
+{\footnotesize\ttfamily void add\+\_\+on\+\_\+\+A\+VL (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$$\ast$}]{avl,  }\item[{\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$}]{node\+\_\+for\+\_\+\+A\+VL }\end{DoxyParamCaption})}
+
+
+
+Adding a new leaf to an A\+VL tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Node\+\_\+new\+Type$\ast$$\ast$} & \\
+\hline
+{\em Node\+\_\+new\+Type$\ast$} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{huffman_8h_a954fc2d2d4b261dc7f48d3de23ca13ee}\label{huffman_8h_a954fc2d2d4b261dc7f48d3de23ca13ee}} 
+\index{huffman.h@{huffman.h}!add\_two\_array@{add\_two\_array}}
+\index{add\_two\_array@{add\_two\_array}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{add\_two\_array()}{add\_two\_array()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_node}{Node}}$\ast$$\ast$ add\+\_\+two\+\_\+array (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$$\ast$}]{array,  }\item[{int}]{size\+\_\+array,  }\item[{int}]{position\+\_\+letter,  }\item[{char}]{letter }\end{DoxyParamCaption})}
+
+
+
+create a dynamic array with the new node placed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array,size\+\_\+array,position\+\_\+letter,letter} & \\
+\hline
+{\em size\+\_\+array} & \\
+\hline
+{\em position\+\_\+letter} & \\
+\hline
+{\em letter} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Node$\ast$$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8h_a93f5ec21069def5d43b9e93ea40636f1}\label{huffman_8h_a93f5ec21069def5d43b9e93ea40636f1}} 
+\index{huffman.h@{huffman.h}!array\_of\_occurences@{array\_of\_occurences}}
+\index{array\_of\_occurences@{array\_of\_occurences}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{array\_of\_occurences()}{array\_of\_occurences()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_node}{Node}}$\ast$$\ast$ array\+\_\+of\+\_\+occurences (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+build an array of node containing letters Use the search by dichotomous 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Node$\ast$$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8h_ac724dbe93b5574b8aef002b0f23d904f}\label{huffman_8h_ac724dbe93b5574b8aef002b0f23d904f}} 
+\index{huffman.h@{huffman.h}!balance@{balance}}
+\index{balance@{balance}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{balance()}{balance()}}
+{\footnotesize\ttfamily void balance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$$\ast$}]{tree }\end{DoxyParamCaption})}
+
+
+
+balance a tree; 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Node\+\_\+new\+Type$\ast$$\ast$} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{huffman_8h_a727f1cb9005fe6ebec3fb6ce46582f14}\label{huffman_8h_a727f1cb9005fe6ebec3fb6ce46582f14}} 
+\index{huffman.h@{huffman.h}!balance\_factor@{balance\_factor}}
+\index{balance\_factor@{balance\_factor}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{balance\_factor()}{balance\_factor()}}
+{\footnotesize\ttfamily int balance\+\_\+factor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$}]{tree }\end{DoxyParamCaption})}
+
+
+
+calculate the balance factor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Node\+\_\+new\+Type$\ast$} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8h_aa94d0cac09d2a2ecd7ada8ad2deb32c8}\label{huffman_8h_aa94d0cac09d2a2ecd7ada8ad2deb32c8}} 
+\index{huffman.h@{huffman.h}!create\_huffman\_tree@{create\_huffman\_tree}}
+\index{create\_huffman\_tree@{create\_huffman\_tree}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{create\_huffman\_tree()}{create\_huffman\_tree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structures_8h_a2b5312470152fabd805e7df398bb410f}{Tree}} create\+\_\+huffman\+\_\+tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structures_8h_afc9de32003622570428917fe8ee59b10}{List}} $\ast$}]{occurrences\+List }\end{DoxyParamCaption})}
+
+
+
+Create a huffman tree object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em occurrences\+List} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tree 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8h_ad4d017c1b688d5f53e8526a8033cd2f3}\label{huffman_8h_ad4d017c1b688d5f53e8526a8033cd2f3}} 
+\index{huffman.h@{huffman.h}!create\_huffman\_tree\_Optimised@{create\_huffman\_tree\_Optimised}}
+\index{create\_huffman\_tree\_Optimised@{create\_huffman\_tree\_Optimised}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{create\_huffman\_tree\_Optimised()}{create\_huffman\_tree\_Optimised()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structures_8h_a2b5312470152fabd805e7df398bb410f}{Tree}} create\+\_\+huffman\+\_\+tree\+\_\+\+Optimised (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$$\ast$}]{array\+Nodes,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Create a optimised Huffman Tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array\+Nodes} & \\
+\hline
+{\em size} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Tree 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8h_a921790f302c832458efdc59b8c283875}\label{huffman_8h_a921790f302c832458efdc59b8c283875}} 
+\index{huffman.h@{huffman.h}!create\_the\_new\_dico@{create\_the\_new\_dico}}
+\index{create\_the\_new\_dico@{create\_the\_new\_dico}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{create\_the\_new\_dico()}{create\_the\_new\_dico()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}}$\ast$ create\+\_\+the\+\_\+new\+\_\+dico (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{tree }\end{DoxyParamCaption})}
+
+
+
+create the huffman dictionary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Node$\ast$} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Node\+\_\+new\+Type$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8h_a159c6957de365fdd5609643369f8598c}\label{huffman_8h_a159c6957de365fdd5609643369f8598c}} 
+\index{huffman.h@{huffman.h}!getMin@{getMin}}
+\index{getMin@{getMin}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{getMin()}{getMin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_node}{Node}}$\ast$ get\+Min (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_queue}{Queue}} $\ast$}]{source\+Queue,  }\item[{\mbox{\hyperlink{struct_queue}{Queue}} $\ast$}]{new\+Node\+Queue }\end{DoxyParamCaption})}
+
+
+
+Function used in \mbox{\hyperlink{huffman_8h_ad4d017c1b688d5f53e8526a8033cd2f3}{create\+\_\+huffman\+\_\+tree\+\_\+\+Optimised()}}, to get the minimum node from two queues with source\+Queue in priority. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em source\+Queue} & \\
+\hline
+{\em new\+Node\+Queue} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Node$\ast$ or N\+U\+LL 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8h_ae7985723e6280866227f7b74f75e3455}\label{huffman_8h_ae7985723e6280866227f7b74f75e3455}} 
+\index{huffman.h@{huffman.h}!left\_rotation@{left\_rotation}}
+\index{left\_rotation@{left\_rotation}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{left\_rotation()}{left\_rotation()}}
+{\footnotesize\ttfamily void left\+\_\+rotation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$$\ast$}]{tree }\end{DoxyParamCaption})}
+
+
+
+left rotation to balance the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Node\+\_\+new\+Type$\ast$$\ast$} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{huffman_8h_a1cefbce2ccc06186cb21b2e2d8474155}\label{huffman_8h_a1cefbce2ccc06186cb21b2e2d8474155}} 
+\index{huffman.h@{huffman.h}!list\_occurence@{list\_occurence}}
+\index{list\_occurence@{list\_occurence}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{list\_occurence()}{list\_occurence()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_element__occur}{Element\+\_\+occur}}$\ast$ list\+\_\+occurence (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create a list of occurences. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the list of occurences 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8h_a80a0116fc0dc05e5e0a3a0729648dff6}\label{huffman_8h_a80a0116fc0dc05e5e0a3a0729648dff6}} 
+\index{huffman.h@{huffman.h}!right\_rotation@{right\_rotation}}
+\index{right\_rotation@{right\_rotation}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{right\_rotation()}{right\_rotation()}}
+{\footnotesize\ttfamily void right\+\_\+rotation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$$\ast$}]{tree }\end{DoxyParamCaption})}
+
+
+
+right rotation to balance the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Node\+\_\+new\+Type$\ast$$\ast$} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Element\+\_\+occur$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{huffman_8h_a1597532f320daa4fcb6e147a0ba1a1e5}\label{huffman_8h_a1597532f320daa4fcb6e147a0ba1a1e5}} 
+\index{huffman.h@{huffman.h}!search\_code\_to\_createAVL@{search\_code\_to\_createAVL}}
+\index{search\_code\_to\_createAVL@{search\_code\_to\_createAVL}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{search\_code\_to\_createAVL()}{search\_code\_to\_createAVL()}}
+{\footnotesize\ttfamily void search\+\_\+code\+\_\+to\+\_\+create\+A\+VL (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{tree,  }\item[{\mbox{\hyperlink{struct_element__new_type}{Element\+\_\+new\+Type}} $\ast$}]{list1,  }\item[{\mbox{\hyperlink{struct_element__new_type}{Element\+\_\+new\+Type}} $\ast$}]{list2,  }\item[{\mbox{\hyperlink{struct_node__new_type}{Node\+\_\+new\+Type}} $\ast$$\ast$}]{avl }\end{DoxyParamCaption})}
+
+
+
+creation of the avl which contains the dico. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Node$\ast$} & \\
+\hline
+{\em Element\+\_\+new\+Type$\ast$} & \\
+\hline
+{\em Element\+\_\+new\+Type$\ast$} & \\
+\hline
+{\em Node\+\_\+new\+Type$\ast$$\ast$} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{huffman_8h_a172f8a4c8a166edab9c56658687bc8ca}\label{huffman_8h_a172f8a4c8a166edab9c56658687bc8ca}} 
+\index{huffman.h@{huffman.h}!selection\_sort@{selection\_sort}}
+\index{selection\_sort@{selection\_sort}!huffman.h@{huffman.h}}
+\doxysubsubsection{\texorpdfstring{selection\_sort()}{selection\_sort()}}
+{\footnotesize\ttfamily void selection\+\_\+sort (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$$\ast$}]{array,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Sort an array of nodes based on occurrences with selection sort algorithm. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & \\
+\hline
+{\em size} & \\
+\hline
+\end{DoxyParams}
