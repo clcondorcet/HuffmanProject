@@ -66,9 +66,6 @@ Tree create_huffman_tree(List * occurrencesList){
     }
 }
 
-
-
-
 Node** add_two_array(Node** array, int size_array, int position_letter, char letter){
     size_array ++;
     Node** new_array = (Node**) malloc((size_array+1)*sizeof(Node*));
@@ -85,7 +82,7 @@ Node** add_two_array(Node** array, int size_array, int position_letter, char let
     return new_array;
 }
 
-Node** array_of_occurences(){
+Node** array_of_occurences(int * size){
     FILE* texte = fopen("texte.txt", "r");
     char letter = fgetc(texte);
     int size_array = 0, start=0, middle=0,end =0;
@@ -114,6 +111,7 @@ Node** array_of_occurences(){
         }
         letter = fgetc(texte);
     }
+    *size = size_array;
     fclose(texte);
     return array;
 }
@@ -240,25 +238,36 @@ void add_on_AVL(Node_newType** avl, Node_newType* node_for_AVL){
     }
 }
 
-void search_code_to_createAVL(Node* tree, Element_newType* list1, Element_newType* list2, Node_newType** avl){
+void search_code_to_createAVL(Node* tree, char ** array, int size, Node_newType** avl){
     if(tree->haveChara == 0){
-        list1 = create_Element_newType(1, list1);
-        list2 = create_Element_newType(0, list2);
-        search_code_to_createAVL(tree->right, list1, list1, avl);
-        search_code_to_createAVL(tree->left, list2, list2, avl);
+        int i = 0;
+        while((*array)[i] != '\0'){
+            i++;
+        }
+        char ** newArray1 = copyArray(array, size);
+        (*newArray1)[i] = '1';
+        char ** newArray2 = copyArray(array, size);
+        (*newArray2)[i] = '0';
+        search_code_to_createAVL(tree->right, newArray1, size, avl);
+        search_code_to_createAVL(tree->left, newArray2, size, avl);
     }else{
-        Node_newType* node_for_AVL = create_Node_newType(tree->chara, list1, NULL, NULL);
+        Node_newType* node_for_AVL = create_Node_newType(tree->chara, copyArray(array, size), NULL, NULL);
         add_on_AVL(avl, node_for_AVL);
         balance(avl);
     }
+    free(*array);
+    free(array);
 }
 
-Node_newType* create_the_new_dico(Node* tree){
+Node_newType* create_the_new_dico(Node* tree, int deapth){
     Node_newType* avl = NULL;
-    Element_newType* list1 = NULL;
-    Element_newType* list2 = NULL;
+    char * chars = (char*) malloc(deapth * sizeof(char));
+    int i;
+    for(i = 0; i < deapth; i++){
+        chars[i] = '\0';
+    }
     if(tree != NULL){
-        search_code_to_createAVL(tree, list1, list2, &avl);
+        search_code_to_createAVL(tree, &chars, deapth, &avl);
     }
     return avl;
 }

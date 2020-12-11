@@ -54,8 +54,6 @@ void translation_file_to_binary(char* input_file, char* output_file)
     fclose(file);
 }
 
-
-
 int nb_character_txt_file(char* txt_name)
 {
     int count = 0;
@@ -254,11 +252,48 @@ void decompress_text_with_huffman(Tree huffmantree){
     fclose(texte);
 }
 
+void poubelle(Node_newType* avl){
+    if(avl != NULL){
+        printf("(%c)", avl->data);
+        printf("%s", *(avl->l));
+        poubelle(avl->left);
+        poubelle(avl->right);
+    }
+}
+
+void poubelle2(Node* avl){
+    if(avl != NULL){
+        if(avl->haveChara){
+            printf("(%c)", avl->chara);
+            printf("%d ", avl->occurrences);
+            poubelle2(avl->left);
+            poubelle2(avl->right);
+        }else{
+            printf("|%d| ", avl->occurrences);
+            poubelle2(avl->left);
+            poubelle2(avl->right);
+        }
+    }
+}
+
+void printList(Node ** array, int size){
+    for(int i = 0; i < size; i++){
+        if(array[i]->haveChara){
+            printf("%c%d ", array[i]->chara ,array[i]->occurrences);
+        }else{
+            printf("%d ", array[i]->occurrences);
+        }
+    }
+}
+
 void compress_file_with_huffman(){
     int question=0;
     printf("Do you want to compress your file texte.txt ? (Enter 1 if yes, 0 if no)");
     scanf("%d",&question);
     if (question==1){
+        /**
+         * 
+         * Not optimied version:
         Element_occur* El = list_occurence();
         Tree huffmantree = create_huffman_tree(&El);
         createDico(huffmantree);
@@ -268,7 +303,13 @@ void compress_file_with_huffman(){
         scanf("%d",&question);
         if (question==1){
             decompress_text_with_huffman(huffmantree);
-        }
+        }*/
+        int size;
+        Node ** arrayOccurences = array_of_occurences(&size);
+        Tree huffmanTree = create_huffman_tree_Optimised(arrayOccurences, size);
+        createDicoOptimised(huffmanTree);
+        Node_newType * avl = create_the_new_dico(huffmanTree, treeDeapth(huffmanTree));
+        poubelle(avl);
     }
     printf("Bye");
 }
