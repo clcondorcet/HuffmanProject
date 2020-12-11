@@ -12,23 +12,6 @@
  * @return the list of occurences
  */
 Element_occur* list_occurence();
-
-/**
- * @brief Sort an array of nodes based on occurrences with selection sort algorithm.
- * 
- * @param array 
- * @param size 
- */
-void selection_sort(Node ** array, int size);
-
-/**
- * @brief Debug function to print an array of nodes.
- * 
- * @param array 
- * @param size 
- */
-void printList(Node ** array, int size);
-
 /**
  * @brief Create a huffman tree object.
  *
@@ -37,78 +20,5 @@ void printList(Node ** array, int size);
  */
 Tree create_huffman_tree(List * occurrencesList);
 
-/**
- * @brief Function used in create_huffman_tree_Optimised(), to get the minimum node from two queues with sourceQueue in priority.
- * 
- * @param sourceQueue 
- * @param newNodeQueue 
- * @return Node* or NULL
- */
-Node * getMin(Queue * sourceQueue, Queue * newNodeQueue);
-
-/**
- * @brief Create a optimised Huffman Tree.
- * 
- * @param arrayNodes 
- * @param size 
- * @return Tree 
- */
-Tree create_huffman_tree_Optimised(Node ** arrayNodes, int size);
-
-/**
- * @brief calculate the balance factor.
- * 
- * @param Node_newType* 
- * @return int
- */
-int balance_factor(Node_newType* tree);
-
-/**
- * @brief right rotation to balance the tree.
- * 
- * @param Node_newType** 
- * @return Element_occur* 
- */
-void right_rotation(Node_newType** tree);
-
-/**
- * @brief left rotation to balance the tree.
- * 
- * @param Node_newType** 
- */
-void left_rotation(Node_newType** tree);
-
-/**
- * @brief balance a tree;
- * 
- * @param Node_newType** 
- */
-void balance(Node_newType** tree);
-
-/**
- * @brief Adding a new leaf to an AVL tree.
- * 
- * @param Node_newType**
- * @param Node_newType*
- */
-void add_on_AVL(Node_newType** avl, Node_newType* node_for_AVL);
-
-/**
- * @brief creation of the avl which contains the dico.
- * 
- * @param Node*
- * @param Element_newType*
- * @param Element_newType*
- * @param Node_newType**
- */
-void search_code_to_createAVL(Node* tree, Element_newType* list1, Element_newType* list2, Node_newType** avl);
-
-/**
- * @brief create the huffman dictionary.
- * 
- * @param Node* 
- * @return Node_newType*
- */
-Node_newType* create_the_new_dico(Node* tree);
 
 #endif /* HUFFMAN_H */

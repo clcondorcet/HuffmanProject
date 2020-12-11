@@ -2,11 +2,14 @@
 #include <stdlib.h>
 #include "huffman.h"
 #include "structures.h"
-#include "input_output.h"
 
 
 int main(){
-
-    compress_file_with_huffman();
+    int a;
+    a=compress_file_with_huffman();
+    if (a==0){
+        printf("Please verify your files\n");
+    }
+    printf("Bye");
     return 0;
 }

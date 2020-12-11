@@ -12,7 +12,10 @@ int* letter_to_binary(int letter)
     return binary;
 }
 
-void print_in_file(FILE * bin, int* binary){
+void print_in_file(char* p_file, int* binary)
+{
+    FILE* bin;
+    bin = fopen(p_file, "w+");
     if (bin == NULL)
     {
         printf("Error in opening file.\n");
@@ -24,6 +27,7 @@ void print_in_file(FILE * bin, int* binary){
             fprintf(bin, "%d", binary[i]);
         }
     }
+    fclose(bin);
 }
 
 void translation_file_to_binary(char* input_file, char* output_file)
@@ -76,6 +80,8 @@ int nb_character_txt_file(char* txt_name)
     return count-1; //Does not include spaces and returns.
 }
 
+
+
 void printDico(Node * tree, FILE * file, char * chars){
     if(tree->haveChara){
         if(tree->chara == '\n'){
@@ -121,81 +127,18 @@ int createDico(Tree huffmanTree){
     return 1;
 }
 
-char ** copyArray(char ** array, int size){
-    char ** chars = (char**) malloc(sizeof(char *));
-    int i;
-    *chars = (char*) malloc(size * sizeof(char));
-    for(i = 0; i < size; i++){
-        (*chars)[i] = (*array)[i];
-    }
-    return chars;
-}
-
-int createDicoOptimised(Tree huffmanTree){
-    FILE * file = fopen("dico.txt", "w+");
-    if(file == NULL){
-        printf("Error in opening file\n");
-        fclose(file);
-        return 0;
-    }
-    int deapth = treeDeapth(huffmanTree);
-    char * chars = (char*) malloc(deapth * sizeof(char));
-    int i;
-    for(i = 0; i < deapth; i++){
-        chars[i] = '\0';
-    }
-    Queue * nodeQueue = create_queue();
-    QueueChar * charQueue = create_queueChar();
-    enqueue(nodeQueue, huffmanTree);
-    enqueueChar(charQueue, copyArray(&chars, deapth));
-    free(chars);
-    while(!is_empty(nodeQueue)){
-        Node * node = dequeue(nodeQueue);
-        char ** byteCode = dequeueChar(charQueue);
-        if(node->haveChara){
-            if(node->chara == '\n'){
-                fprintf(file, "%c%c", '\\', 'n');
-            }else{
-                fprintf(file, "%c", node->chara);
-            }
-            int i = 0;
-            while((*byteCode)[i] != '\0'){
-                fprintf(file, "%c", (*byteCode)[i]);
-                i++;
-            }
-            fprintf(file, "%c", '\n');
-        }else{
-            enqueue(nodeQueue, node->left);
-            char ** newChar = copyArray(byteCode, deapth);
-            i = 0;
-            while((*newChar)[i] != '\0'){
-                i++;
-            }
-            (*newChar)[i] = '0';
-            enqueueChar(charQueue, newChar);
-            enqueue(nodeQueue, node->right);
-            char ** newChar2 = copyArray(byteCode, deapth);
-            (*newChar2)[i] = '1';
-            enqueueChar(charQueue, newChar2);
-        }
-        free(*byteCode);
-        free(byteCode);
-    }
-    free(nodeQueue);
-    free(charQueue);
-    fclose(file);
-    return 1;
-}
-
 // The function compresses a text file using a dico file.
 // The function has as parameter size_max which represents the highest Huffman code size of a character.
 // The function return nothing. It just creates a text file with the compressed text.
-void translate_texte_with_huffman(int size_max){
+int translate_texte_with_huffman(int size_max){
 
     FILE* texte = fopen("texte.txt", "r"); // We open the file texte.txt
     FILE* code = fopen("dico.txt", "r"); // We open the file dico.txt
     FILE* encode_texte = fopen("compressed.txt", "w+"); // We create the file compressed.txt
     char letter = fgetc(texte); // We take the first character of the texte
+    if (texte == NULL || code== NULL || encode_texte==NULL){
+        return 0;
+    }
     while (letter != EOF){ // While we are not at the end of the texte
         char* take_info = (char*)malloc((size_max+3)*sizeof(char)); // We create an array to contain the character and its Huffman code that we are looking for
         do{
@@ -218,20 +161,26 @@ void translate_texte_with_huffman(int size_max){
     fclose(code);
     fclose(texte);
     fclose(encode_texte);
+    return 1;
 }
 
-void decompress_text_with_huffman(Tree huffmantree){
+
+
+
+int decompress_text_with_huffman(Tree huffmantree){
     FILE* encoded_texte = fopen("compressed.txt", "r");
     FILE* texte = fopen("decompressed.txt", "w+");
     if(encoded_texte == NULL){
-        printf("Error in opening file\n");
+        printf("Error in opening compressing file\n");
         fclose(encoded_texte);
         fclose(texte);
+        return 0;
     }
     if(texte == NULL){
-        printf("Error in opening file\n");
+        printf("Error in opening decompressed file\n");
         fclose(encoded_texte);
         fclose(texte);
+        return 0;
     }
     else{
         int number = 0;
@@ -252,23 +201,46 @@ void decompress_text_with_huffman(Tree huffmantree){
     }
     fclose(encoded_texte);
     fclose(texte);
+    return 1;
 }
 
-void compress_file_with_huffman(){
-    int question=0;
+int compress_file_with_huffman(){
+    int question=0, verif=0;
+    do{
     printf("Do you want to compress your file texte.txt ? (Enter 1 if yes, 0 if no)");
     scanf("%d",&question);
+    }while(question !=1 && question !=0);
     if (question==1){
         Element_occur* El = list_occurence();
         Tree huffmantree = create_huffman_tree(&El);
+        if (huffmantree== NULL){
+            printf("Error to build the tree\n Compression failed");
+            return 0;
+        }
         createDico(huffmantree);
-        translate_texte_with_huffman(treeDeapth(huffmantree));
+        verif=translate_texte_with_huffman(treeDeapth(huffmantree));
+        if (verif==0){
+            printf("Compression failed\n");
+            return 0;
+        }
+        else{
+            printf("Compression completed\n");
+        }
         question=0;
-        printf("Your compress has suceeded\nDo you want to decompress it too ? (Enter 1 if yes, 0 if no)");
+        do{
+        printf("Do you want to decompress it too ? (Enter 1 if yes, 0 if no)");
         scanf("%d",&question);
+        }while(question !=1 && question !=0);
         if (question==1){
-            decompress_text_with_huffman(huffmantree);
+            verif=decompress_text_with_huffman(huffmantree);
+            if (verif==0){
+                printf("Decompression failed\n");
+                return 0;
+            }
+            else{
+                printf("Decompression completed\n");
+            }
         }
     }
-    printf("Bye");
+    return 1;
 }
