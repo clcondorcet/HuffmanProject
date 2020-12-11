@@ -96,6 +96,23 @@ void translate_texte_with_avl(Node_newType * avl, int size_max);
 void compress_file_with_huffman();
 
 /**
+ * @brief Adding a char at the end of a list.
+ * 
+ * @param array 
+ * @param newSize 
+ * @param newLetter 
+ * @return char** 
+ */
+char ** addChar(char ** array, int newSize, char newLetter);
+
+/**
+ * @brief Create an HuffmanTree from the file dico.txt.
+ * 
+ * @return Tree 
+ */
+Tree huffman_from_dico();
+
+/**
  * @brief Decompresses a file with the huffman tree
  * The function uses the huffman tree and the compressed file to decompress the text
  * @param Tree/Node*
