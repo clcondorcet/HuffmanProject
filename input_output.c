@@ -196,7 +196,7 @@ void translate_texte_with_huffman(int size_max){
     FILE* code = fopen("dico.txt", "r"); // We open the file dico.txt
     FILE* encode_texte = fopen("compressed.txt", "w+"); // We create the file compressed.txt
     char letter = fgetc(texte); // We take the first character of the texte
-    while (letter != EOF){ // While xe are not at the end of the texte
+    while (letter != EOF){ // While we are not at the end of the texte
         char* take_info = (char*)malloc((size_max+3)*sizeof(char)); // We create an array to contain the character and its Huffman code that we are looking for
         do{
             fgets(take_info, size_max+3, code); // We take a line of the code.txt to find the Huffman code of the character that we want
