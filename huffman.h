@@ -1,5 +1,13 @@
 #ifndef HUFFMAN_H
 #define HUFFMAN_H
+/**
+ * @file huffman.h
+ * @author Grp5
+ * @brief All function related to building the huffmanTree, the dictionnary and the list of occurrences.
+ * @version 0.1
+ * @date 2020-12-11
+ * 
+ */
 
 #include "structures.h"
 #include <stdio.h>

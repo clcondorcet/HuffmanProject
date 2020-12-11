@@ -1,0 +1,237 @@
+\hypertarget{input__output_8h}{}\doxysection{input\+\_\+output.\+h File Reference}
+\label{input__output_8h}\index{input\_output.h@{input\_output.h}}
+
+
+All function related to reading, output and console.  
+
+
+{\ttfamily \#include \char`\"{}structures.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}huffman.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int $\ast$ \mbox{\hyperlink{input__output_8h_a286b03d64fcdd82173cd7f938438c30d}{letter\+\_\+to\+\_\+binary}} (int letter)
+\begin{DoxyCompactList}\small\item\em transform a letter into it\textquotesingle{}s binary code \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input__output_8h_a64b9a207dc403854bf73eec53c7a28be}{print\+\_\+in\+\_\+file}} (F\+I\+LE $\ast$bin, int $\ast$binary)
+\begin{DoxyCompactList}\small\item\em function to print a char into a file \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input__output_8h_a0e5eb06a6ad38239dda60fcd4e7972cb}{translation\+\_\+file\+\_\+to\+\_\+binary}} (char $\ast$input\+\_\+file, char $\ast$output\+\_\+file)
+\begin{DoxyCompactList}\small\item\em Function to translate a text file to its binary text. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{input__output_8h_a80234d7f99330f9e76913460f2ca58df}{nb\+\_\+character\+\_\+txt\+\_\+file}} (char $\ast$txt\+\_\+name)
+\begin{DoxyCompactList}\small\item\em Function to calculate the number of characters in a texte file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input__output_8h_adb0ddd2ad4261834a74e4a23100bf771}{print\+Dico}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$tree, F\+I\+LE $\ast$file, char $\ast$chars)
+\begin{DoxyCompactList}\small\item\em A recursive function used by create\+Dico to print the huffman tree in a file. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{input__output_8h_ad6f759532a5769909140156b3cb4364d}{create\+Dico}} (\mbox{\hyperlink{structures_8h_a2b5312470152fabd805e7df398bb410f}{Tree}} huffman\+Tree)
+\begin{DoxyCompactList}\small\item\em Print a huffman tree in dico.\+txt. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \mbox{\hyperlink{input__output_8h_aaabb7c5390493dfe1ce7657b6aafbec6}{copy\+Array}} (char $\ast$$\ast$array, int size)
+\begin{DoxyCompactList}\small\item\em Copy an array of characters into a new malloc one. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{input__output_8h_a21ede7b91ac7b88576e8323004ddc56a}{create\+Dico\+Optimised}} (\mbox{\hyperlink{structures_8h_a2b5312470152fabd805e7df398bb410f}{Tree}} huffman\+Tree)
+\begin{DoxyCompactList}\small\item\em Print a huffman tree optimised in dico.\+txt. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{input__output_8h_af64ba83e3f3b9134fe5a5fd5b7288d97}\label{input__output_8h_af64ba83e3f3b9134fe5a5fd5b7288d97}} 
+void \mbox{\hyperlink{input__output_8h_af64ba83e3f3b9134fe5a5fd5b7288d97}{translate\+\_\+texte\+\_\+with\+\_\+huffman}} ()
+\begin{DoxyCompactList}\small\item\em Function that translates a text into a binary sequence based on a Huffman dictionary The function has no parameters because we open and close the file in the function The function take a letter of the text, find her binary sequence and print the binary sequence in a file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input__output_8h_a63a0f83b6e8cc0d89991a729d416694b}{compress\+\_\+file\+\_\+with\+\_\+huffman}} ()
+\begin{DoxyCompactList}\small\item\em Compresses a file with the huffman tree The function uses all the function used before to compress a file with the huffman tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{input__output_8h_ae00d34e3514102012a80a43af68b5e4b}{decompress\+\_\+text\+\_\+with\+\_\+huffman}} (\mbox{\hyperlink{structures_8h_a2b5312470152fabd805e7df398bb410f}{Tree}} huffmantree)
+\begin{DoxyCompactList}\small\item\em Decompresses a file with the huffman tree The function uses the huffman tree and the compressed file to decompress the text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+All function related to reading, output and console. 
+
+\begin{DoxyAuthor}{Author}
+Grp5 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2020-\/12-\/11 
+\end{DoxyDate}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{input__output_8h_a63a0f83b6e8cc0d89991a729d416694b}\label{input__output_8h_a63a0f83b6e8cc0d89991a729d416694b}} 
+\index{input\_output.h@{input\_output.h}!compress\_file\_with\_huffman@{compress\_file\_with\_huffman}}
+\index{compress\_file\_with\_huffman@{compress\_file\_with\_huffman}!input\_output.h@{input\_output.h}}
+\doxysubsubsection{\texorpdfstring{compress\_file\_with\_huffman()}{compress\_file\_with\_huffman()}}
+{\footnotesize\ttfamily void compress\+\_\+file\+\_\+with\+\_\+huffman (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Compresses a file with the huffman tree The function uses all the function used before to compress a file with the huffman tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{input__output_8h_aaabb7c5390493dfe1ce7657b6aafbec6}\label{input__output_8h_aaabb7c5390493dfe1ce7657b6aafbec6}} 
+\index{input\_output.h@{input\_output.h}!copyArray@{copyArray}}
+\index{copyArray@{copyArray}!input\_output.h@{input\_output.h}}
+\doxysubsubsection{\texorpdfstring{copyArray()}{copyArray()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ copy\+Array (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{array,  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Copy an array of characters into a new malloc one. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em array} & \\
+\hline
+{\em size} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+char$\ast$$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{input__output_8h_ad6f759532a5769909140156b3cb4364d}\label{input__output_8h_ad6f759532a5769909140156b3cb4364d}} 
+\index{input\_output.h@{input\_output.h}!createDico@{createDico}}
+\index{createDico@{createDico}!input\_output.h@{input\_output.h}}
+\doxysubsubsection{\texorpdfstring{createDico()}{createDico()}}
+{\footnotesize\ttfamily int create\+Dico (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structures_8h_a2b5312470152fabd805e7df398bb410f}{Tree}}}]{huffman\+Tree }\end{DoxyParamCaption})}
+
+
+
+Print a huffman tree in dico.\+txt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em huffman\+Tree} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if error, 1 if all is good. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{input__output_8h_a21ede7b91ac7b88576e8323004ddc56a}\label{input__output_8h_a21ede7b91ac7b88576e8323004ddc56a}} 
+\index{input\_output.h@{input\_output.h}!createDicoOptimised@{createDicoOptimised}}
+\index{createDicoOptimised@{createDicoOptimised}!input\_output.h@{input\_output.h}}
+\doxysubsubsection{\texorpdfstring{createDicoOptimised()}{createDicoOptimised()}}
+{\footnotesize\ttfamily int create\+Dico\+Optimised (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structures_8h_a2b5312470152fabd805e7df398bb410f}{Tree}}}]{huffman\+Tree }\end{DoxyParamCaption})}
+
+
+
+Print a huffman tree optimised in dico.\+txt. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em huffman\+Tree} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if error, 1 if all is good. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{input__output_8h_ae00d34e3514102012a80a43af68b5e4b}\label{input__output_8h_ae00d34e3514102012a80a43af68b5e4b}} 
+\index{input\_output.h@{input\_output.h}!decompress\_text\_with\_huffman@{decompress\_text\_with\_huffman}}
+\index{decompress\_text\_with\_huffman@{decompress\_text\_with\_huffman}!input\_output.h@{input\_output.h}}
+\doxysubsubsection{\texorpdfstring{decompress\_text\_with\_huffman()}{decompress\_text\_with\_huffman()}}
+{\footnotesize\ttfamily void decompress\+\_\+text\+\_\+with\+\_\+huffman (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structures_8h_a2b5312470152fabd805e7df398bb410f}{Tree}}}]{huffmantree }\end{DoxyParamCaption})}
+
+
+
+Decompresses a file with the huffman tree The function uses the huffman tree and the compressed file to decompress the text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Tree/\+Node$\ast$} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{input__output_8h_a286b03d64fcdd82173cd7f938438c30d}\label{input__output_8h_a286b03d64fcdd82173cd7f938438c30d}} 
+\index{input\_output.h@{input\_output.h}!letter\_to\_binary@{letter\_to\_binary}}
+\index{letter\_to\_binary@{letter\_to\_binary}!input\_output.h@{input\_output.h}}
+\doxysubsubsection{\texorpdfstring{letter\_to\_binary()}{letter\_to\_binary()}}
+{\footnotesize\ttfamily int$\ast$ letter\+\_\+to\+\_\+binary (\begin{DoxyParamCaption}\item[{int}]{letter }\end{DoxyParamCaption})}
+
+
+
+transform a letter into it\textquotesingle{}s binary code 
+
+
+\begin{DoxyParams}{Parameters}
+{\em letter} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+binary code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{input__output_8h_a80234d7f99330f9e76913460f2ca58df}\label{input__output_8h_a80234d7f99330f9e76913460f2ca58df}} 
+\index{input\_output.h@{input\_output.h}!nb\_character\_txt\_file@{nb\_character\_txt\_file}}
+\index{nb\_character\_txt\_file@{nb\_character\_txt\_file}!input\_output.h@{input\_output.h}}
+\doxysubsubsection{\texorpdfstring{nb\_character\_txt\_file()}{nb\_character\_txt\_file()}}
+{\footnotesize\ttfamily int nb\+\_\+character\+\_\+txt\+\_\+file (\begin{DoxyParamCaption}\item[{char $\ast$}]{txt\+\_\+name }\end{DoxyParamCaption})}
+
+
+
+Function to calculate the number of characters in a texte file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em txt\+\_\+name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the number of characters in the text 
+\end{DoxyReturn}
+\mbox{\Hypertarget{input__output_8h_a64b9a207dc403854bf73eec53c7a28be}\label{input__output_8h_a64b9a207dc403854bf73eec53c7a28be}} 
+\index{input\_output.h@{input\_output.h}!print\_in\_file@{print\_in\_file}}
+\index{print\_in\_file@{print\_in\_file}!input\_output.h@{input\_output.h}}
+\doxysubsubsection{\texorpdfstring{print\_in\_file()}{print\_in\_file()}}
+{\footnotesize\ttfamily void print\+\_\+in\+\_\+file (\begin{DoxyParamCaption}\item[{F\+I\+LE $\ast$}]{bin,  }\item[{int $\ast$}]{binary }\end{DoxyParamCaption})}
+
+
+
+function to print a char into a file 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+\_\+file,binary} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{input__output_8h_adb0ddd2ad4261834a74e4a23100bf771}\label{input__output_8h_adb0ddd2ad4261834a74e4a23100bf771}} 
+\index{input\_output.h@{input\_output.h}!printDico@{printDico}}
+\index{printDico@{printDico}!input\_output.h@{input\_output.h}}
+\doxysubsubsection{\texorpdfstring{printDico()}{printDico()}}
+{\footnotesize\ttfamily void print\+Dico (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{tree,  }\item[{F\+I\+LE $\ast$}]{file,  }\item[{char $\ast$}]{chars }\end{DoxyParamCaption})}
+
+
+
+A recursive function used by create\+Dico to print the huffman tree in a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tree} & \\
+\hline
+{\em file} & \\
+\hline
+{\em chars} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{input__output_8h_a0e5eb06a6ad38239dda60fcd4e7972cb}\label{input__output_8h_a0e5eb06a6ad38239dda60fcd4e7972cb}} 
+\index{input\_output.h@{input\_output.h}!translation\_file\_to\_binary@{translation\_file\_to\_binary}}
+\index{translation\_file\_to\_binary@{translation\_file\_to\_binary}!input\_output.h@{input\_output.h}}
+\doxysubsubsection{\texorpdfstring{translation\_file\_to\_binary()}{translation\_file\_to\_binary()}}
+{\footnotesize\ttfamily void translation\+\_\+file\+\_\+to\+\_\+binary (\begin{DoxyParamCaption}\item[{char $\ast$}]{input\+\_\+file,  }\item[{char $\ast$}]{output\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+Function to translate a text file to its binary text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+\_\+file} & and output\+\_\+file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}

@@ -1,5 +1,15 @@
 #ifndef STRUCTURES_H
 #define STRUCTURES_H
+/**
+ * @file structures.h
+ * @author Grp5
+ * @brief All function related to structures.
+ * @version 0.1
+ * @date 2020-12-11
+ * 
+ */
+
+
 
 /**
  * @brief Struture of the nodes of the occurrences list.
