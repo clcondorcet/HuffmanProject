@@ -218,6 +218,36 @@ void translate_texte_with_huffman(int size_max){
     fclose(encode_texte);
 }
 
+void translate_texte_with_avl(Node_newType * avl, int size_max){
+    FILE* texte = fopen("texte.txt", "r");
+    if(texte == NULL){
+        printf("Error in opening file\n");
+        fclose(texte);
+        return;
+    }
+    FILE* encode_texte = fopen("compressed.txt", "w+");
+    if(encode_texte == NULL){
+        printf("Error in opening file\n");
+        fclose(encode_texte);
+        return;
+    }
+    char letter = fgetc(texte);
+    while (letter != EOF){
+        Node_newType * temp = avl;
+        while(temp->data != letter){
+            if((int)temp->data > (int) letter){
+                temp = temp->left;
+            }else{
+                temp = temp->right;
+            }
+        }
+        fprintf(encode_texte, "%s", *(temp->l));
+        letter = fgetc(texte);
+    }
+    fclose(texte);
+    fclose(encode_texte);
+}
+
 void decompress_text_with_huffman(Tree huffmantree){
     FILE* encoded_texte = fopen("compressed.txt", "r");
     FILE* texte = fopen("decompressed.txt", "w+");
@@ -310,6 +340,7 @@ void compress_file_with_huffman(){
         createDicoOptimised(huffmanTree);
         Node_newType * avl = create_the_new_dico(huffmanTree, treeDeapth(huffmanTree));
         poubelle(avl);
+        translate_texte_with_avl(avl, treeDeapth(huffmanTree));
     }
     printf("Bye");
 }
