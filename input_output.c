@@ -273,22 +273,6 @@ void compress_file_with_huffman(){
     printf("Bye");
 }
 
-Node_newType* create_Node_newType(char letter, Element_newType* list, Node_newType* theRight, Node_newType* theLeft){
-    Node_newType* newNode = (Node_newType*)malloc(sizeof(Node_newType));
-    newNode->data = letter;
-    newNode->l = list;
-    newNode->right = theRight;
-    newNode->left = theLeft;
-    return newNode;
-}
-
-Element_newType* create_Element_newType(int nbr, Element_newType* list){
-    Element_newType* newElement = (Element_newType*)malloc(sizeof(Element_newType));
-    newElement->boolean = nbr;
-    newElement->next = list;
-    return newElement;
-}
-
 int tree_depth_Node_newType(Node_newType* tree){
     if (tree == NULL){
         return 0;
