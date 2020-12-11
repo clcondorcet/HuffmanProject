@@ -96,4 +96,34 @@ void compress_file_with_huffman();
  */
 void decompress_text_with_huffman(Tree huffmantree);
 
+/**
+ * @brief calculate the balance factor.
+ * 
+ * @param Node_newType* 
+ * @return int
+ */
+int balance_factor(Node_newType* tree);
+
+/**
+ * @brief right rotation to balance the tree.
+ * 
+ * @param Node_newType** 
+ * @return Element_occur* 
+ */
+void right_rotation(Node_newType** tree);
+
+/**
+ * @brief left rotation to balance the tree.
+ * 
+ * @param Node_newType** 
+ */
+void left_rotation(Node_newType** tree);
+
+/**
+ * @brief balance a tree;
+ * 
+ * @param Node_newType** 
+ */
+void balance(Node_newType** tree);
+
 #endif // INPUT_OUTPUT_H_INCLUDED
