@@ -273,23 +273,7 @@ void compress_file_with_huffman(){
     printf("Bye");
 }
 
-int tree_depth_Node_newType(Node_newType* tree){
-    if (tree == NULL){
-        return 0;
-    }
-    else{
-        int dl = tree_depth_Node_newType(tree->left);
-        int dr = tree_depth_Node_newType(tree->right);
-
-        if (dl > dr){
-            return dl + 1;
-        }
-        else{
-            return dr + 1;
-        }
-    }
-}
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
 int balance_factor(Node_newType* tree){
     if(tree == NULL){
         return 0;
@@ -337,7 +321,7 @@ void balance(Node_newType** tree){
         }
     }
 }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 void add_on_AVL(Node_newType** avl, Node_newType* node_for_AVL){
     if(*avl == NULL){
         *avl = node_for_AVL;
