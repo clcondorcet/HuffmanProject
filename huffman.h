@@ -2,6 +2,7 @@
 #define HUFFMAN_H
 
 #include "structures.h"
+#include "input_output.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -109,11 +110,11 @@ void add_on_AVL(Node_newType** avl, Node_newType* node_for_AVL);
  * @brief creation of the avl which contains the dico.
  * 
  * @param Node*
- * @param Element_newType*
- * @param Element_newType*
+ * @param char**
+ * @param char**
  * @param Node_newType**
  */
-void search_code_to_createAVL(Node* tree, Element_newType* list1, Element_newType* list2, Node_newType** avl);
+void search_code_to_createAVL(Node* tree, char** list1, int size, Node_newType** avl);
 
 /**
  * @brief create the huffman dictionary.
@@ -121,6 +122,6 @@ void search_code_to_createAVL(Node* tree, Element_newType* list1, Element_newTyp
  * @param Node* 
  * @return Node_newType*
  */
-Node_newType* create_the_new_dico(Node* tree);
+Node_newType* create_the_new_dico(Node* tree, int deapth);
 
 #endif /* HUFFMAN_H */

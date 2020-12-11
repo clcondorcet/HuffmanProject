@@ -79,6 +79,13 @@ int createDicoOptimised(Tree huffmanTree);
  */
 void translate_texte_with_huffman();
 
+/**
+ * @brief This function tranlate a text into a binary sequence based on a Huffman dictionary with the AVL form.
+ * 
+ * @param avl 
+ * @param size_max 
+ */
+void translate_texte_with_avl(Node_newType * avl, int size_max);
 
 /**
  * @brief Compresses a file with the huffman tree
@@ -87,6 +94,23 @@ void translate_texte_with_huffman();
  * @return none
  */
 void compress_file_with_huffman();
+
+/**
+ * @brief Adding a char at the end of a list.
+ * 
+ * @param array 
+ * @param newSize 
+ * @param newLetter 
+ * @return char** 
+ */
+char ** addChar(char ** array, int newSize, char newLetter);
+
+/**
+ * @brief Create an HuffmanTree from the file dico.txt.
+ * 
+ * @return Tree 
+ */
+Tree huffman_from_dico();
 
 /**
  * @brief Decompresses a file with the huffman tree

@@ -1,4 +1,5 @@
 #include "input_output.h"
+#include <time.h>
 
 int* letter_to_binary(int letter)
 {
@@ -53,8 +54,6 @@ void translation_file_to_binary(char* input_file, char* output_file)
     fclose(bin);
     fclose(file);
 }
-
-
 
 int nb_character_txt_file(char* txt_name)
 {
@@ -220,6 +219,36 @@ void translate_texte_with_huffman(int size_max){
     fclose(encode_texte);
 }
 
+void translate_texte_with_avl(Node_newType * avl, int size_max){
+    FILE* texte = fopen("texte.txt", "r");
+    if(texte == NULL){
+        printf("Error in opening file\n");
+        fclose(texte);
+        return;
+    }
+    FILE* encode_texte = fopen("compressed.txt", "w+");
+    if(encode_texte == NULL){
+        printf("Error in opening file\n");
+        fclose(encode_texte);
+        return;
+    }
+    char letter = fgetc(texte);
+    while (letter != EOF){
+        Node_newType * temp = avl;
+        while(temp->data != letter){
+            if((int)temp->data > (int) letter){
+                temp = temp->left;
+            }else{
+                temp = temp->right;
+            }
+        }
+        fprintf(encode_texte, "%s", *(temp->l));
+        letter = fgetc(texte);
+    }
+    fclose(texte);
+    fclose(encode_texte);
+}
+
 void decompress_text_with_huffman(Tree huffmantree){
     FILE* encoded_texte = fopen("compressed.txt", "r");
     FILE* texte = fopen("decompressed.txt", "w+");
@@ -227,6 +256,7 @@ void decompress_text_with_huffman(Tree huffmantree){
         printf("Error in opening file\n");
         fclose(encoded_texte);
         fclose(texte);
+        return;
     }
     if(texte == NULL){
         printf("Error in opening file\n");
@@ -252,22 +282,103 @@ void decompress_text_with_huffman(Tree huffmantree){
     }
     fclose(encoded_texte);
     fclose(texte);
+    printf("Decompression performed\n");
+}
+
+char ** addChar(char ** array, int newSize, char newLetter){
+    char ** chars = (char**) malloc(sizeof(char *));
+    int i;
+    *chars = (char*) malloc(newSize * sizeof(char));
+    for(i = 0; i < newSize-1; i++){
+        (*chars)[i] = (*array)[i];
+    }
+    (*chars)[newSize-1] = newLetter;
+    free(*array);
+    free(array);
+    return chars;
+}
+
+Tree huffman_from_dico(){
+    FILE* dico = fopen("dico.txt", "r");
+    if(dico == NULL){
+        printf("Error in opening file\n");
+        fclose(dico);
+        exit(0);
+    }
+    char letter = fgetc(dico);
+    char current = '\0';
+    Node * huffmanTree= create_node(' ', 0, 1, NULL, NULL);
+    Node * temp = huffmanTree;
+    while(letter != EOF){
+        if(letter == '\n'){
+            temp->haveChara = 1;
+            temp->chara = current;
+            current = '\0';
+            temp = huffmanTree;
+            letter = fgetc(dico);
+        }else{
+            if(current == '\0'){
+                if(letter == '\\'){
+                    letter = fgetc(dico);
+                    if(letter == 'n'){
+                        current = '\n';
+                        letter = fgetc(dico);
+                    }else{
+                        current = '\\';
+                    }
+                }else{
+                    current = letter;
+                    letter = fgetc(dico);
+                }
+            }
+            if(letter == '0'){
+                if(temp->left == NULL){
+                    temp->left = create_node(' ', 0, 1, NULL, NULL);
+                }
+                temp = temp->left;
+            }else{
+                if(temp->right == NULL){
+                    temp->right = create_node(' ', 0, 1, NULL, NULL);
+                }
+                temp = temp->right;
+            }
+            letter = fgetc(dico);
+        }
+    }
+    return huffmanTree;
 }
 
 void compress_file_with_huffman(){
     int question=0;
+    do{
     printf("Do you want to compress your file texte.txt ? (Enter 1 if yes, 0 if no)");
     scanf("%d",&question);
+    }while(question !=1 && question !=0);
     if (question==1){
-        Element_occur* El = list_occurence();
-        Tree huffmantree = create_huffman_tree(&El);
-        createDico(huffmantree);
-        translate_texte_with_huffman(treeDeapth(huffmantree));
+        clock_t t;
+        t = clock();
+        int size;
+        Node ** arrayOccurences = array_of_occurences(&size);
+        if (arrayOccurences == NULL){
+            return;
+        }
+        Tree huffmanTree = create_huffman_tree_Optimised(arrayOccurences, size);
+        if (huffmanTree == NULL){
+            printf("Error to build the tree\n Compression failed");
+            return;
+        }
+        createDicoOptimised(huffmanTree);
+        Node_newType * avl = create_the_new_dico(huffmanTree, treeDeapth(huffmanTree));
+        translate_texte_with_avl(avl, treeDeapth(huffmanTree));
         question=0;
+        t = clock() - t;
+        double time_taken = ((double)t)/CLOCKS_PER_SEC;
+        printf(" Took %f seconds to execute \n", time_taken);
         printf("Your compress has suceeded\nDo you want to decompress it too ? (Enter 1 if yes, 0 if no)");
         scanf("%d",&question);
         if (question==1){
-            decompress_text_with_huffman(huffmantree);
+            Tree newHuffmanTree = huffman_from_dico();
+            decompress_text_with_huffman(newHuffmanTree);
         }
     }
     printf("Bye");
