@@ -1,5 +1,13 @@
 #ifndef INPUT_OUTPUT_H_INCLUDED
 #define INPUT_OUTPUT_H_INCLUDED
+/**
+ * @file input_output.h
+ * @author Grp5
+ * @brief All function related to reading, output and console.
+ * @version 0.1
+ * @date 2020-12-11
+ * 
+ */
 
 #include "structures.h"
 #include "huffman.h"
