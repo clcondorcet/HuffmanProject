@@ -65,7 +65,6 @@ Node** array_of_occurences();
  * @param size 
  * @return Tree 
  */
-
 Tree create_huffman_tree_Optimised(Node ** arrayNodes, int size);
 
 /**
