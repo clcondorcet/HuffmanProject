@@ -234,4 +234,24 @@ typedef struct Node_newType{
     struct Node_newType* left;
 }Node_newType;
 
+/**
+ * @brief Create a Element_newType object.
+ *
+ * @param int
+ * @param Element_newType* 
+ * @return Element_newType* 
+ */
+Element_newType* create_Element_newType(int nbr, Element_newType* list);
+
+/**
+ * @brief Create a Node_newType object.
+ * 
+ * @param char 
+ * @param Element_newType*
+ * @param Node_newType*
+ * @param Node_newType*
+ * @return Node* 
+ */
+Node_newType* create_Node_newType(char letter, Element_newType* list, Node_newType* theRight, Node_newType* theLeft);
+
 #endif /* STRUCTURES_H */
