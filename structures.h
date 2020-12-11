@@ -214,4 +214,24 @@ char ** frontChar(QueueChar * queue);
  */
 void free_queueChar(QueueChar * queue);
 
+/**
+ * @brief Struture of a linked list with an integer data.
+ * 
+ */
+typedef struct Element_newType{
+    int boolean;
+    struct Element_newType* next;
+}Element_newType;
+
+/**
+ * @brief  Struture of the nodes of the AVL tree with a list.
+ * 
+ */
+typedef struct Node_newType{
+    char data;
+    Element_newType* l;
+    struct Node_newType* right;
+    struct Node_newType* left;
+}Node_newType;
+
 #endif /* STRUCTURES_H */
