@@ -254,4 +254,12 @@ Element_newType* create_Element_newType(int nbr, Element_newType* list);
  */
 Node_newType* create_Node_newType(char letter, Element_newType* list, Node_newType* theRight, Node_newType* theLeft);
 
+/**
+ * @brief Return the deapth of a tree with the type Node_new_Type.
+ * 
+ * @param Node_newType* 
+ * @return int
+ */
+int tree_depth_Node_newType(Node_newType* tree);
+
 #endif /* STRUCTURES_H */
