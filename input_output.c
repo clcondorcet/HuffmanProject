@@ -305,10 +305,9 @@ void right_rotation(Node_newType** tree){
 }
 
 /**
- * @brief remove the minimum element of the list and return it.
+ * @brief left rotation to balance the tree.
  * 
- * @param list 
- * @return Element_occur* 
+ * @param Node_newType** 
  */
 void left_rotation(Node_newType** tree){
     if(*tree != NULL){
@@ -320,10 +319,9 @@ void left_rotation(Node_newType** tree){
 }
 
 /**
- * @brief remove the minimum element of the list and return it.
+ * @brief balance a tree;
  * 
- * @param list 
- * @return Element_occur* 
+ * @param Node_newType** 
  */
 void balance(Node_newType** tree){
     if (*tree != NULL){
@@ -347,10 +345,10 @@ void balance(Node_newType** tree){
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * @brief remove the minimum element of the list and return it.
+ * @brief Adding a new leaf to an AVL tree.
  * 
- * @param list 
- * @return Element_occur* 
+ * @param Node_newType**
+ * @param Node_newType*
  */
 void add_on_AVL(Node_newType** avl, Node_newType* node_for_AVL){
     if(*avl == NULL){
@@ -369,10 +367,12 @@ void add_on_AVL(Node_newType** avl, Node_newType* node_for_AVL){
 }
 
 /**
- * @brief remove the minimum element of the list and return it.
+ * @brief creation of the avl which contains the dico.
  * 
- * @param list 
- * @return Element_occur* 
+ * @param Node*
+ * @param Element_newType*
+ * @param Element_newType*
+ * @param Node_newType**
  */
 void search_code_to_createAVL(Node* tree, Element_newType* list1, Element_newType* list2, Node_newType** avl){
     if(tree->haveChara == 0){
@@ -388,10 +388,10 @@ void search_code_to_createAVL(Node* tree, Element_newType* list1, Element_newTyp
 }
 
 /**
- * @brief remove the minimum element of the list and return it.
+ * @brief create the huffman dictionary.
  * 
- * @param list 
- * @return Element_occur* 
+ * @param Node* 
+ * @return Node_newType*
  */
 Node_newType* create_the_new_dico(Node* tree){
     Node_newType* avl = NULL;
