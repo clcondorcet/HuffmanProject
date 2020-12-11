@@ -274,6 +274,12 @@ void compress_file_with_huffman(){
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @brief calculate the balance factor.
+ * 
+ * @param Node_newType* 
+ * @return int
+ */
 int balance_factor(Node_newType* tree){
     if(tree == NULL){
         return 0;
@@ -283,6 +289,12 @@ int balance_factor(Node_newType* tree){
     }
 }
 
+/**
+ * @brief right rotation to balance the tree.
+ * 
+ * @param Node_newType** 
+ * @return Element_occur* 
+ */
 void right_rotation(Node_newType** tree){
     if(*tree != NULL){
         Node_newType* temp = (*tree)->left;
@@ -292,6 +304,12 @@ void right_rotation(Node_newType** tree){
     }
 }
 
+/**
+ * @brief remove the minimum element of the list and return it.
+ * 
+ * @param list 
+ * @return Element_occur* 
+ */
 void left_rotation(Node_newType** tree){
     if(*tree != NULL){
         Node_newType* temp = (*tree)->right;
@@ -301,6 +319,12 @@ void left_rotation(Node_newType** tree){
     }
 }
 
+/**
+ * @brief remove the minimum element of the list and return it.
+ * 
+ * @param list 
+ * @return Element_occur* 
+ */
 void balance(Node_newType** tree){
     if (*tree != NULL){
         balance(&((*tree)->left));
@@ -322,6 +346,12 @@ void balance(Node_newType** tree){
     }
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * @brief remove the minimum element of the list and return it.
+ * 
+ * @param list 
+ * @return Element_occur* 
+ */
 void add_on_AVL(Node_newType** avl, Node_newType* node_for_AVL){
     if(*avl == NULL){
         *avl = node_for_AVL;
@@ -338,6 +368,12 @@ void add_on_AVL(Node_newType** avl, Node_newType* node_for_AVL){
     }
 }
 
+/**
+ * @brief remove the minimum element of the list and return it.
+ * 
+ * @param list 
+ * @return Element_occur* 
+ */
 void search_code_to_createAVL(Node* tree, Element_newType* list1, Element_newType* list2, Node_newType** avl){
     if(tree->haveChara == 0){
         list1 = create_Element_newType(1, list1);
@@ -351,6 +387,12 @@ void search_code_to_createAVL(Node* tree, Element_newType* list1, Element_newTyp
     }
 }
 
+/**
+ * @brief remove the minimum element of the list and return it.
+ * 
+ * @param list 
+ * @return Element_occur* 
+ */
 Node_newType* create_the_new_dico(Node* tree){
     Node_newType* avl = NULL;
     Element_newType* list1 = NULL;
