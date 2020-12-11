@@ -1,4 +1,5 @@
 #include "input_output.h"
+#include <time.h>
 
 int* letter_to_binary(int letter)
 {
@@ -354,8 +355,8 @@ void compress_file_with_huffman(){
     scanf("%d",&question);
     }while(question !=1 && question !=0);
     if (question==1){
-        //clock_t t;
-        //t = clock();
+        clock_t t;
+        t = clock();
         int size;
         Node ** arrayOccurences = array_of_occurences(&size);
         if (arrayOccurences == NULL){
@@ -370,9 +371,9 @@ void compress_file_with_huffman(){
         Node_newType * avl = create_the_new_dico(huffmanTree, treeDeapth(huffmanTree));
         translate_texte_with_avl(avl, treeDeapth(huffmanTree));
         question=0;
-        //t = clock() - t;
-        //double time_taken = ((double)t)/CLOCKS_PER_SEC;
-        //printf(" Took %f seconds to execute \n", time_taken);
+        t = clock() - t;
+        double time_taken = ((double)t)/CLOCKS_PER_SEC;
+        printf(" Took %f seconds to execute \n", time_taken);
         printf("Your compress has suceeded\nDo you want to decompress it too ? (Enter 1 if yes, 0 if no)");
         scanf("%d",&question);
         if (question==1){
